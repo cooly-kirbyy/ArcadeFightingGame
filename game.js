@@ -7,7 +7,8 @@ class sprite {
     }
 
     draw() {
-        ctext.fillRect(this.position.x,this.position.y,width = 100, height = 300)
+        ctext.fillStyle = 'blue'
+        ctext.fillRect(this.position.x,this.position.y, 75, 200)
     }
 }
 
@@ -15,5 +16,7 @@ const playerone = new sprite({
     x:0,
     y:0
 })
+
+playerone.draw()
 
 console.log(playerone)
