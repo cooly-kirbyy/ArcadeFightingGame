@@ -13,9 +13,10 @@ class sprite {
     }
 
     update() {
-    this.draw()
-    this.position.x += this.velocity.vx
-}
+        this.draw()
+        this.position.x += this.velocity.vx
+        this.position.y += this.velocity.vy
+    }   
 }
 
 const playerone = new sprite({
@@ -38,15 +39,16 @@ const playertwo = new sprite({
         y:0
     },
     velocity:{
-        x:0,
-        y:0
+        vx:0,
+        vy:0
     }
 })
 playertwo.draw()
 console.log(playertwo)
 
 function animateFrames() {
-    console.log('test')
+    ctext.fillStyle = 'white'
+    ctext.fillRect(0,0,canvas.width,canvas.height)
     playerone.update()
     window.requestAnimationFrame(animateFrames)
 }
