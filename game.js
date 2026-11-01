@@ -11,6 +11,11 @@ class sprite {
         ctext.fillStyle = 'blue'
         ctext.fillRect(this.position.x,this.position.y, 75, 200)
     }
+
+    update() {
+    this.draw()
+    this.position.x += this.velocity.vx
+}
 }
 
 const playerone = new sprite({
@@ -19,8 +24,8 @@ const playerone = new sprite({
         y:0
     },
     velocity:{
-        x:0,
-        y:0,
+        vx:0,
+        vy:0,
     }
 })
 playerone.draw()
@@ -40,15 +45,16 @@ const playertwo = new sprite({
 playertwo.draw()
 console.log(playertwo)
 
-
 function animateFrames() {
     console.log('test')
+    playerone.update()
     window.requestAnimationFrame(animateFrames)
 }
 animateFrames()
 
 window.addEventListener("keydown", function(p){
     if (p.code === "KeyD") {
+        playerone.velocity.vx = 1
         console.log('D key was pressed')
     }
     else if (p.code === "KeyA") {
