@@ -1,22 +1,30 @@
 const canvas = document.getElementById('game-screen');
 const ctext = canvas.getContext('2d')
+const grav = 0.4
 
 class sprite {
     constructor({position, velocity}) {
         this.position = position
         this.velocity = velocity
+        this.height = 200
     }
 
     draw() {
         ctext.fillStyle = 'blue'
-        ctext.fillRect(this.position.x,this.position.y, 75, 200)
+        ctext.fillRect(this.position.x,this.position.y, 75, this.height)
     }
 
     update() {
         this.draw()
         this.position.x += this.velocity.vxl
         this.position.x += this.velocity.vxr
-        this.position.y += this.velocity.vy
+        this.position.y += this.velocity.vyu
+        this.position.y += this.velocity.vyd
+
+        if (this.position.y + this.height + this.velocity.vyd >= canvas.height) {
+            this.velocity.vyd = 0 
+        } else this.velocity.vyd += grav
+        
     }   
 }
 
@@ -24,18 +32,25 @@ class spritetwo {
     constructor({position, velocity}) {
         this.position = position
         this.velocity = velocity
+        this.height = 200
     }
 
     draw() {
         ctext.fillStyle = 'black'
-        ctext.fillRect(this.position.x,this.position.y, 75, 200)
+        ctext.fillRect(this.position.x,this.position.y, 75, this.height)
     }
 
     update() {
         this.draw()
         this.position.x += this.velocity.vxl
         this.position.x += this.velocity.vxr
-        this.position.y += this.velocity.vy
+        this.position.y += this.velocity.vyu
+        this.position.y += this.velocity.vyd
+
+        if (this.position.y + this.height + this.velocity.vyd >= canvas.height) {
+            this.velocity.vyd = 0
+        } else this.velocity.vyd += grav
+
     }   
 }
 
@@ -48,7 +63,8 @@ const playerone = new sprite({
     velocity:{
         vxl:0,
         vxr:0,
-        vy:0,
+        vyd:0,
+        vyu:0
     }
 })
 playerone.draw()
@@ -64,7 +80,8 @@ const playertwo = new spritetwo({
     velocity:{
         vxl:0,
         vxr:0,
-        vy:0
+        vyd:0,
+        vyu:0
     }
 })
 playertwo.draw()
