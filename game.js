@@ -87,6 +87,7 @@ const playertwo = new spritetwo({
 playertwo.draw()
 console.log(playertwo)
 
+
 function animateFrames() {
     ctext.fillStyle = 'white'
     ctext.fillRect(0,0,canvas.width,canvas.height)
@@ -112,7 +113,8 @@ window.addEventListener('keydown', function(p){
         console.log('W key was pressed')
     }
     else if (p.code === 'KeyS') {
-        console.log('S key was pressed')
+        playerone.height = 100
+        console.log(playerone.height)
     }
     
     /*second player controls */
@@ -146,7 +148,9 @@ window.addEventListener('keyup', function(p){
         console.log('W key was let go')
     }
     else if (p.code === 'KeyS') {
-        console.log('S key was let go')
+        playerone.height = 200
+        playerone.position.y = canvas.height - playerone.height
+        console.log(playerone)
     }
     
     /*second player controls */
