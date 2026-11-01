@@ -114,6 +114,8 @@ window.addEventListener('keydown', function(p){
     }
     else if (p.code === 'KeyS') {
         playerone.height = 100
+        playerone.position.y = canvas.height - playerone.height
+
         console.log(playerone.height)
     }
     
@@ -130,7 +132,9 @@ window.addEventListener('keydown', function(p){
         console.log('Up arrow key was pressed')
     }
     else if (p.code === 'ArrowDown') {
-        console.log('Down arrow key was pressed')
+        playertwo.height = 100
+        playertwo.position.y = canvas.height - playertwo.height
+        console.log(playertwo.height)
     }
 })
 
@@ -166,6 +170,8 @@ window.addEventListener('keyup', function(p){
         console.log('Up arrow key was let go')
     }
     else if (p.code === 'ArrowDown') {
-        console.log('Down arrow key was let go')
+        playertwo.height = 200
+        playertwo.position.y = canvas.height - playertwo.height 
+        console.log(playertwo)
     }
 })
