@@ -19,8 +19,8 @@ const playerone = new sprite({
         y:0
     },
     velocity:{
-        vx:0,
-        vy:0,
+        x:0,
+        y:0,
     }
 })
 playerone.draw()
@@ -33,8 +33,8 @@ const playertwo = new sprite({
         y:0
     },
     velocity:{
-        vx:0,
-        vy:0
+        x:0,
+        y:0
     }
 })
 playertwo.draw()
@@ -48,5 +48,17 @@ function animateFrames() {
 animateFrames()
 
 window.addEventListener("keydown", function(p){
-    console.log(p.code)
+    if (p.code === "KeyD") {
+        console.log('D key was pressed')
+    }
+    else if (p.code === "KeyA") {
+        console.log('A key was pressed')
+    }
+    else if (p.code === "KeyW") {
+        console.log('W key was pressed')
+    }
+    else if (p.code === "KeyS") {
+        console.log('S key was pressed')
+    }
+
 })
