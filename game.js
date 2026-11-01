@@ -20,6 +20,25 @@ class sprite {
     }   
 }
 
+class spritetwo {
+    constructor({position, velocity}) {
+        this.position = position
+        this.velocity = velocity
+    }
+
+    draw() {
+        ctext.fillStyle = 'black'
+        ctext.fillRect(this.position.x,this.position.y, 75, 200)
+    }
+
+    update() {
+        this.draw()
+        this.position.x += this.velocity.vxl
+        this.position.x += this.velocity.vxr
+        this.position.y += this.velocity.vy
+    }   
+}
+
 const playerone = new sprite({
     
     position:{
@@ -36,7 +55,7 @@ playerone.draw()
 console.log(playerone)
 
 
-const playertwo = new sprite({
+const playertwo = new spritetwo({
     
     position:{
         x:800,
