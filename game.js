@@ -14,7 +14,8 @@ class sprite {
 
     update() {
         this.draw()
-        this.position.x += this.velocity.vx
+        this.position.x += this.velocity.vxl
+        this.position.x += this.velocity.vxr
         this.position.y += this.velocity.vy
     }   
 }
@@ -26,7 +27,8 @@ const playerone = new sprite({
         y:0
     },
     velocity:{
-        vx:0,
+        vxl:0,
+        vxr:0,
         vy:0,
     }
 })
@@ -41,7 +43,8 @@ const playertwo = new sprite({
         y:0
     },
     velocity:{
-        vx:0,
+        vxl:0,
+        vxr:0,
         vy:0
     }
 })
@@ -62,11 +65,11 @@ animateFrames()
 window.addEventListener('keydown', function(p){
     /*first player controls*/
     if (p.code === 'KeyD') {
-        playerone.velocity.vx = 5
+        playerone.velocity.vxr = 5
         console.log('D key was pressed')
     }
     else if (p.code === 'KeyA') {
-        playerone.velocity.vx = -5
+        playerone.velocity.vxl = -5
         console.log('A key was pressed')
     }
     else if (p.code === 'KeyW') {
@@ -78,11 +81,11 @@ window.addEventListener('keydown', function(p){
     
     /*second player controls */
     else if (p.code === 'ArrowRight') {
-        playertwo.velocity.vx = 5
+        playertwo.velocity.vxr = 5
         console.log('Right arrow key was pressed')
     }
     else if (p.code === 'ArrowLeft') {
-        playertwo.velocity.vx = -5
+        playertwo.velocity.vxl = -5
         console.log('Left arrow key was pressed')
     }
     else if (p.code === 'ArrowUp') {
@@ -96,11 +99,11 @@ window.addEventListener('keydown', function(p){
 window.addEventListener('keyup', function(p){
     /*first player controls*/
     if (p.code === 'KeyD') {
-        playerone.velocity.vx = 0
+        playerone.velocity.vxr = 0
         console.log('D key was let go')
     }
     else if (p.code === 'KeyA') {
-        playerone.velocity.vx = 0
+        playerone.velocity.vxl = 0
         console.log('A key was let go')
     }
     else if (p.code === 'KeyW') {
@@ -112,11 +115,11 @@ window.addEventListener('keyup', function(p){
     
     /*second player controls */
     else if (p.code === 'ArrowRight') {
-        playertwo.velocity.vx = 0
+        playertwo.velocity.vxr = 0
         console.log('Right arrow key was let go')
     }
     else if (p.code === 'ArrowLeft') {
-        playertwo.velocity.vx = 0
+        playertwo.velocity.vxl = 0
         console.log('Left arrow key was let go')
     }
     else if (p.code === 'ArrowUp') {
