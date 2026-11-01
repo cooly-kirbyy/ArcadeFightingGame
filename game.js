@@ -50,6 +50,7 @@ function animateFrames() {
     ctext.fillStyle = 'white'
     ctext.fillRect(0,0,canvas.width,canvas.height)
     playerone.update()
+    playertwo.update()
     window.requestAnimationFrame(animateFrames)
 }
 animateFrames()
