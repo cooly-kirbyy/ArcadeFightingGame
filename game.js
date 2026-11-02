@@ -23,6 +23,7 @@ class sprite {
 
         if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
             this.velocity.vy = 0 
+            playerone.currentJumps = 0
         } else this.velocity.vy += grav
         
     }   
@@ -66,7 +67,9 @@ const playerone = new sprite({
         vxl:0,
         vxr:0,
         vy:0,
-    }
+    },
+    currentJumps: 0,
+    jumpMax: 2
 })
 playerone.draw()
 console.log(playerone)
@@ -82,7 +85,7 @@ const playertwo = new spritetwo({
         vxl:0,
         vxr:0,
         vy:0,
-    }
+    },
 })
 playertwo.draw()
 console.log(playertwo)
@@ -129,7 +132,8 @@ window.addEventListener('keydown', function(p){
     }
     else if (p.code === 'KeyW') {
         playerone.velocity.vy = -10
-        console.log('W key was pressed')
+        playerone.currentJumps++
+        console.log(playerone.currentJumps)
     }
     else if (p.code === 'KeyS') {
         playerOneHeight(100)
