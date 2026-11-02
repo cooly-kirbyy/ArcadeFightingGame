@@ -51,7 +51,7 @@ class spriteTWO {
         this.jumpMax = jumpMax
         this.attackHitBox = {
             position: this.position,
-            width: -150,
+            width: -75,
             height: 50
         }
     }
@@ -61,7 +61,7 @@ class spriteTWO {
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
 
         ctext.fillStyle = 'yellow'
-        ctext.fillRect((this.attackHitBox.position.x + this.width), this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
+        ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
     }
 
     update() {
@@ -122,6 +122,10 @@ function animateFrames() {
 
     if (playerone.attackHitBox.position.x + playerone.attackHitBox.width >= playertwo.position.x && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width) {
         console.log('player two was hit')
+    }
+
+    if (playertwo.attackHitBox.position.x >= playerone.position.x && playertwo.attackHitBox.position.x + playertwo.attackHitBox.width <= playerone.position.x + playerone.width) {
+        console.log('player one was hit')
     }
 }
 animateFrames()
