@@ -97,6 +97,24 @@ function animateFrames() {
 }
 animateFrames()
 
+
+/*allowing crouch to work in the air */
+
+function playerOneHeight(updatedHeight) {
+    const playeroneBottom = playerone.position.y + playerone.height
+
+    playerone.height = updatedHeight
+    playerone.position.y = playeroneBottom - updatedHeight
+}
+
+function playerTwoHeight(updatedHeight) {
+    const playertwoBottom = playertwo.position.y + playertwo.height 
+
+    playertwo.height = updatedHeight
+    playertwo.position.y = playertwoBottom - updatedHeight
+}
+
+
 /* CONTROLS */
 
 window.addEventListener('keydown', function(p){
@@ -114,9 +132,8 @@ window.addEventListener('keydown', function(p){
         console.log('W key was pressed')
     }
     else if (p.code === 'KeyS') {
-        playerone.height = 100
-        playerone.position.y = canvas.height - playerone.height
-        console.log(playerone.height)
+        playerOneHeight(100)
+        console.log('S key was pressed')
     }
     
     /*second player controls */
@@ -129,12 +146,12 @@ window.addEventListener('keydown', function(p){
         console.log('Left arrow key was pressed')
     }
     else if (p.code === 'ArrowUp') {
+        playertwo.velocity.vy = -10
         console.log('Up arrow key was pressed')
     }
     else if (p.code === 'ArrowDown') {
-        playertwo.height = 100
-        playertwo.position.y = canvas.height - playertwo.height
-        console.log(playertwo.height)
+        playerTwoHeight(100)
+        console.log('Down arrow key was pressed')
     }
 })
 
@@ -149,13 +166,11 @@ window.addEventListener('keyup', function(p){
         console.log('A key was let go')
     }
     else if (p.code === 'KeyW') {
-
         console.log('W key was let go')
     }
     else if (p.code === 'KeyS') {
-        playerone.height = 200
-        playerone.position.y = canvas.height - playerone.height
-        console.log(playerone)
+        playerOneHeight(200)
+        console.log('S key was let go')
     }
     
     /*second player controls */
@@ -171,8 +186,7 @@ window.addEventListener('keyup', function(p){
         console.log('Up arrow key was let go')
     }
     else if (p.code === 'ArrowDown') {
-        playertwo.height = 200
-        playertwo.position.y = canvas.height - playertwo.height 
-        console.log(playertwo)
+        playerTwoHeight(200) 
+        console.log('Down arrow key was let go')
     }
 })
