@@ -120,11 +120,17 @@ function animateFrames() {
     playertwo.update()
     window.requestAnimationFrame(animateFrames)
 
-    if (playerone.attackHitBox.position.x + playerone.attackHitBox.width >= playertwo.position.x && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width) {
+    if (playerone.attackHitBox.position.x + playerone.attackHitBox.width >= playertwo.position.x 
+        && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width
+        && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
+        && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height) {
         console.log('player two was hit')
     }
 
-    if (playertwo.attackHitBox.position.x >= playerone.position.x && playertwo.attackHitBox.position.x + playertwo.attackHitBox.width <= playerone.position.x + playerone.width) {
+    if (playertwo.attackHitBox.position.x >= playerone.position.x 
+        && playertwo.attackHitBox.position.x + playertwo.attackHitBox.width <= playerone.position.x + playerone.width
+        && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
+        && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height) {
         console.log('player one was hit')
     }
 }
