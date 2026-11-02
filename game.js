@@ -2,11 +2,13 @@ const canvas = document.getElementById('game-screen');
 const ctext = canvas.getContext('2d')
 const grav = 0.4
 
-class sprite {
-    constructor({position, velocity}) {
+class spriteONE {
+    constructor({position, velocity, currentJumps = 0, jumpMax = 2}) {
         this.position = position
         this.velocity = velocity
         this.height = 200
+        this.currentJumps = currentJumps
+        this.jumpMax = jumpMax
     }
 
     draw() {
@@ -23,17 +25,19 @@ class sprite {
 
         if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
             this.velocity.vy = 0 
-            playerone.currentJumps = 0
+            this.currentJumps = 0
         } else this.velocity.vy += grav
         
     }   
 }
 
-class spritetwo {
-    constructor({position, velocity}) {
+class spriteTWO {
+    constructor({position, velocity, currentJumps = 0, jumpMax = 2}) {
         this.position = position
         this.velocity = velocity
         this.height = 200
+        this.currentJumps = currentJumps
+        this.jumpMax = jumpMax
     }
 
     draw() {
@@ -52,12 +56,13 @@ class spritetwo {
 
         if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
             this.velocity.vy = 0
+            this.currentJumps = 0
         } else this.velocity.vy += grav
 
     }   
 }
 
-const playerone = new sprite({
+const playerone = new spriteONE({
     
     position:{
         x:0,
@@ -67,15 +72,13 @@ const playerone = new sprite({
         vxl:0,
         vxr:0,
         vy:0,
-    },
-    currentJumps: 0,
-    jumpMax: 2
+    }
 })
 playerone.draw()
 console.log(playerone)
 
 
-const playertwo = new spritetwo({
+const playertwo = new spriteTWO({
     
     position:{
         x:800,
@@ -131,9 +134,12 @@ window.addEventListener('keydown', function(p){
         console.log('A key was pressed')
     }
     else if (p.code === 'KeyW') {
-        playerone.velocity.vy = -10
-        playerone.currentJumps++
-        console.log(playerone.currentJumps)
+        console.log(playerone.currentJumps, playerone.jumpMax)
+
+        if (playerone.currentJumps < playerone.jumpMax) {
+            playerone.velocity.vy = -10
+            playerone.currentJumps++ 
+        }
     }
     else if (p.code === 'KeyS') {
         playerOneHeight(100)
@@ -150,7 +156,12 @@ window.addEventListener('keydown', function(p){
         console.log('Left arrow key was pressed')
     }
     else if (p.code === 'ArrowUp') {
-        playertwo.velocity.vy = -10
+        console.log(playertwo.currentJumps, playertwo.jumpMax)
+        
+        if (playertwo.currentJumps < playertwo.jumpMax) {
+            playertwo.velocity.vy = -10
+            playertwo.currentJumps++
+        }
         console.log('Up arrow key was pressed')
     }
     else if (p.code === 'ArrowDown') {
