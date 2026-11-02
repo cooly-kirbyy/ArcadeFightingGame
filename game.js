@@ -18,12 +18,12 @@ class sprite {
         this.draw()
         this.position.x += this.velocity.vxl
         this.position.x += this.velocity.vxr
-        this.position.y += this.velocity.vyu
-        this.position.y += this.velocity.vyd
+        this.position.y += this.velocity.vy
+        this.position.y += this.velocity.vy
 
-        if (this.position.y + this.height + this.velocity.vyd >= canvas.height) {
-            this.velocity.vyd = 0 
-        } else this.velocity.vyd += grav
+        if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
+            this.velocity.vy = 0 
+        } else this.velocity.vy += grav
         
     }   
 }
@@ -44,12 +44,14 @@ class spritetwo {
         this.draw()
         this.position.x += this.velocity.vxl
         this.position.x += this.velocity.vxr
-        this.position.y += this.velocity.vyu
-        this.position.y += this.velocity.vyd
+        this.position.y += this.velocity.vy
+        this.position.y += this.velocity.vy
 
-        if (this.position.y + this.height + this.velocity.vyd >= canvas.height) {
-            this.velocity.vyd = 0
-        } else this.velocity.vyd += grav
+        /*gravity system */
+
+        if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
+            this.velocity.vy = 0
+        } else this.velocity.vy += grav
 
     }   
 }
@@ -63,8 +65,7 @@ const playerone = new sprite({
     velocity:{
         vxl:0,
         vxr:0,
-        vyd:0,
-        vyu:0
+        vy:0,
     }
 })
 playerone.draw()
@@ -80,8 +81,7 @@ const playertwo = new spritetwo({
     velocity:{
         vxl:0,
         vxr:0,
-        vyd:0,
-        vyu:0
+        vy:0,
     }
 })
 playertwo.draw()
@@ -110,12 +110,12 @@ window.addEventListener('keydown', function(p){
         console.log('A key was pressed')
     }
     else if (p.code === 'KeyW') {
+        playerone.velocity.vy = -10
         console.log('W key was pressed')
     }
     else if (p.code === 'KeyS') {
         playerone.height = 100
         playerone.position.y = canvas.height - playerone.height
-
         console.log(playerone.height)
     }
     
@@ -149,6 +149,7 @@ window.addEventListener('keyup', function(p){
         console.log('A key was let go')
     }
     else if (p.code === 'KeyW') {
+
         console.log('W key was let go')
     }
     else if (p.code === 'KeyS') {
