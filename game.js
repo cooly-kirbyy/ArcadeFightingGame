@@ -7,13 +7,23 @@ class spriteONE {
         this.position = position
         this.velocity = velocity
         this.height = 200
+        this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
+        this.attackHitBox = {
+            position: this.position,
+            width: 150,
+            height: 50
+        }
     }
 
     draw() {
         ctext.fillStyle = 'blue'
-        ctext.fillRect(this.position.x,this.position.y, 75, this.height)
+        ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
+
+        /*attack hitbox */
+        ctext.fillStyle = 'yellow'
+        ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
     }
 
     update() {
@@ -36,13 +46,22 @@ class spriteTWO {
         this.position = position
         this.velocity = velocity
         this.height = 200
+        this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
+        this.attackHitBox = {
+            position: this.position,
+            width: -150,
+            height: 50
+        }
     }
 
     draw() {
         ctext.fillStyle = 'black'
-        ctext.fillRect(this.position.x,this.position.y, 75, this.height)
+        ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
+
+        ctext.fillStyle = 'yellow'
+        ctext.fillRect((this.attackHitBox.position.x + this.width), this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
     }
 
     update() {
@@ -100,6 +119,10 @@ function animateFrames() {
     playerone.update()
     playertwo.update()
     window.requestAnimationFrame(animateFrames)
+
+    if (playerone.attackHitBox.position.x + playerone.attackHitBox.width >= playertwo.position.x && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width) {
+        console.log('player two was hit')
+    }
 }
 animateFrames()
 
@@ -157,7 +180,7 @@ window.addEventListener('keydown', function(p){
     }
     else if (p.code === 'ArrowUp') {
         console.log(playertwo.currentJumps, playertwo.jumpMax)
-        
+
         if (playertwo.currentJumps < playertwo.jumpMax) {
             playertwo.velocity.vy = -10
             playertwo.currentJumps++
