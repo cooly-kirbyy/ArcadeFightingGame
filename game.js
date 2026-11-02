@@ -10,6 +10,7 @@ class spriteONE {
         this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
+        this.attackActive = false
         this.attackHitBox = {
             position: this.position,
             width: 150,
@@ -49,6 +50,7 @@ class spriteTWO {
         this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
+        this.attackActive = false
         this.attackHitBox = {
             position: this.position,
             width: -75,
