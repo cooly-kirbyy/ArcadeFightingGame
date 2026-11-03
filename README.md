@@ -1,102 +1,18 @@
-### Hi! Welcome to your VS-Code Space!
+## An Arcade Fighting Game 
+This is a basic web fighting game inspired by the likes of MVC, Street Fighter, etc, made in HTML, CSS, and JS (the real heavy hitter). I wanted to break up the monotony of working on a CYOA game for 25 hours straight so starting a new project to divide up my time. I also love this style of fighting games (ESPECIALLY Dragon Ball FighterZ & MVC2) so yet again, another obvious project to start. 
 
-You can use this just like you would vs-code on your own computer! For security reasons, we can not give you root access to the container, but we have preinstalled a number of development tools for you!
+## How to Play
+Again, running this game is extremely easy for people of all different computers as it runs in your browser. For now, the controls are extremely simple (and will be expanded upon in the future):
 
-#### Pre-installed tools:
-If a tool you need is not listed, attempt to install it using one of the package managers listed, and if that is not possible, ask in #spaces on slack and I can probably add the tool!
+Player One: 
+    W: Jump (You can double jump.)
+    A: Move Left
+    D: Move Right
+    S: Crouch 
+Player Two:
+    Up Arrow Key: Jump (You can also double jump.)
+    Left Arrow Key: Move Left
+    Right Arrow Key: Move Right
+    Down Arrow Key: Crouch 
 
-If a tool listed here is not working, wait a few minutes and try again! The installation is ran in the background upon space creation to minimize space creation times, so you might have to wait a minute or two for all tools to become available
-
-##### Hackatime
-
-Make sure to set your hackatime api key in settings! if you have done that, Hackatime has been auto installed and set up for you, and will be tracking your time
-
-##### General
-```
-git
-github-cli
-curl
-wget
-nano
-vim
-unzip
-zip
-build-essentials
-cmake
-pkg-config
-jq
-tree
-htop
-tmux
-less
-ripgrep
-fd-find
-rsync
-openssh-client
-apt-transport-https
-ca-certificates
-gnupg
-```
-##### Python:
-```
-python3
-python3-pip
-python3-venv
-python3-dev
-python3-setuptools
-uv
-```
-
-##### Javascript:
-```
-nodejs
-npm
-yarn
-pnpm
-```
-
-##### Java:
-```
-openjdk-17-jdk
-openjdk-17-jre
-```
-
-##### Rust:
-```
-rust
-cargo
-```
-
-##### PHP:
-```
-php 
-php-cli 
-php-common 
-php-curl 
-php-json 
-php-mbstring 
-php-xml 
-php-zip
-```
-
-##### Database:
-```
-sqlite3
-postgresql-client
-mysql-client
-redis-tools
-```
-
-##### Ruby:
-```
-ruby
-rails
-```
-
-###### Other:
-```
-go
-crystal
-ffmpeg
-imagemagick
-```
+To hit the other player, simply collide your yellow attack hitbox into the other player. (No attack button yet!)
