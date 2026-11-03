@@ -5,14 +5,14 @@ This is a basic web fighting game inspired by the likes of MVC, Street Fighter, 
 Again, running this game is extremely easy for people of all different computers as it runs in your browser. For now, the controls are extremely simple (and will be expanded upon in the future):
 
 Player One: 
-    W: Jump (You can double jump.)
-    A: Move Left
-    D: Move Right
-    S: Crouch 
+    W: Jump (You can double jump.)   
+    A: Move Left   
+    D: Move Right   
+    S: Crouch    
 Player Two:
-    Up Arrow Key: Jump (You can also double jump.)
-    Left Arrow Key: Move Left
-    Right Arrow Key: Move Right
-    Down Arrow Key: Crouch 
+    Up Arrow Key: Jump (You can also double jump.)   
+    Left Arrow Key: Move Left    
+    Right Arrow Key: Move Right   
+    Down Arrow Key: Crouch    
 
 To hit the other player, simply collide your yellow attack hitbox into the other player. (No attack button yet!)
