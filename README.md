@@ -9,6 +9,7 @@ Player One:
     A: Move Left   
     D: Move Right   
     S: Crouch    
+    
 Player Two:
     Up Arrow Key: Jump (You can also double jump.)   
     Left Arrow Key: Move Left    
