@@ -13,7 +13,8 @@ class spriteONE {
         this.attackActive = false
         this.attackHitBox = {
             position: this.position,
-            width: 150,
+            widthr: 150,
+            widthl: -75,
             height: 50
         }
     }
@@ -24,9 +25,15 @@ class spriteONE {
 
         /*attack hitbox */
         if (this.attackActive === true) {
-            ctext.fillStyle = 'yellow'
-            ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
-        }
+            if (this.position.x < playertwo.position.x) {
+                ctext.fillStyle = 'yellow'
+                ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthr, this.attackHitBox.height)
+            }
+            else if (this.position.x > playertwo.position.x) {
+                ctext.fillStyle = 'yellow'
+                ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthl, this.attackHitBox.height)
+            }
+        }  
     }
 
     update() {
@@ -62,7 +69,8 @@ class spriteTWO {
         this.attackActive = false
         this.attackHitBox = {
             position: this.position,
-            width: -75,
+            widthl: -75,
+            widthr: 150,
             height: 50
         }
     }
@@ -71,8 +79,14 @@ class spriteTWO {
         ctext.fillStyle = 'black'
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
         if (this.attackActive === true) {
-            ctext.fillStyle = 'yellow'
-            ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
+            if (this.position.x > playerone.position.x) {
+                ctext.fillStyle = 'yellow'
+                ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthl, this.attackHitBox.height)
+            }
+            else if (this.position.x < playerone.position.x) {
+                ctext.fillStyle = 'yellow'
+                ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthr, this.attackHitBox.height)
+            }
         }
     }
 
