@@ -23,8 +23,10 @@ class spriteONE {
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
 
         /*attack hitbox */
-        ctext.fillStyle = 'yellow'
-        ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
+        if (this.attackActive === true) {
+            ctext.fillStyle = 'yellow'
+            ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
+        }
     }
 
     update() {
@@ -40,6 +42,13 @@ class spriteONE {
         } else this.velocity.vy += grav
         
     }   
+
+    attack() {
+        this.attackActive = true
+        setTimeout(() => {
+            this.attackActive = false
+        }, 100)
+    }
 }
 
 class spriteTWO {
@@ -61,9 +70,10 @@ class spriteTWO {
     draw() {
         ctext.fillStyle = 'black'
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
-
-        ctext.fillStyle = 'yellow'
-        ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
+        if (this.attackActive === true) {
+            ctext.fillStyle = 'yellow'
+            ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.width, this.attackHitBox.height)
+        }
     }
 
     update() {
@@ -81,6 +91,13 @@ class spriteTWO {
         } else this.velocity.vy += grav
 
     }   
+
+    attack() {
+        this.attackActive = true
+        setTimeout(() => {
+            this.attackActive = false
+        }, 100)
+    }
 }
 
 const playerone = new spriteONE({
@@ -125,14 +142,16 @@ function animateFrames() {
     if (playerone.attackHitBox.position.x + playerone.attackHitBox.width >= playertwo.position.x 
         && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
-        && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height) {
+        && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
+        && playerone.attackActive) {
         console.log('player two was hit')
     }
 
     if (playertwo.attackHitBox.position.x >= playerone.position.x 
         && playertwo.attackHitBox.position.x + playertwo.attackHitBox.width <= playerone.position.x + playerone.width
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
-        && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height) {
+        && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
+        && playertwo.attackActive) {
         console.log('player one was hit')
     }
 }
@@ -180,6 +199,11 @@ window.addEventListener('keydown', function(p){
         playerOneHeight(100)
         console.log('S key was pressed')
     }
+    else if (p.code === 'KeyF') {
+        playerone.attack()
+        console.log('p1 attack:',playerone.attackActive)
+    }
+
     
     /*second player controls */
     else if (p.code === 'ArrowRight') {
@@ -197,11 +221,14 @@ window.addEventListener('keydown', function(p){
             playertwo.velocity.vy = -10
             playertwo.currentJumps++
         }
-        console.log('Up arrow key was pressed')
     }
     else if (p.code === 'ArrowDown') {
         playerTwoHeight(100)
         console.log('Down arrow key was pressed')
+    }
+    else if (p.code === 'Comma') {
+        playertwo.attack()
+        console.log('p2 attack:',playertwo.attackActive)
     }
 })
 
@@ -222,6 +249,9 @@ window.addEventListener('keyup', function(p){
         playerOneHeight(200)
         console.log('S key was let go')
     }
+    else if (p.code === 'KeyF') {
+        console.log('p1 attack:',playerone.attackActive)
+    }
     
     /*second player controls */
     else if (p.code === 'ArrowRight') {
@@ -238,5 +268,8 @@ window.addEventListener('keyup', function(p){
     else if (p.code === 'ArrowDown') {
         playerTwoHeight(200) 
         console.log('Down arrow key was let go')
+    }
+    else if (p.code === 'Comma') {
+        console.log('p2 attack:', playertwo.attackActive)
     }
 })
