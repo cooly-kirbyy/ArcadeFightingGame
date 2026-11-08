@@ -169,12 +169,12 @@ function animateFrames() {
     playertwo.update()
     window.requestAnimationFrame(animateFrames)
 
-    if (playerone.attackHitBox.position.x + playerone.attackHitBox.width >= playertwo.position.x 
+    if (playerone.attackHitBox.position.x + playerone.attackHitBox.widthr >= playertwo.position.x 
         && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.attackActive) {
-        console.log('player one was hit')
+        console.log('player two was hit')
     }
 
     if (playertwo.attackHitBox.position.x >= playerone.position.x 
