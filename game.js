@@ -43,6 +43,15 @@ class spriteONE {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
 
+        /*preventing player from running off canvas */
+        if (this.position.x <= 0) {
+            this.position.x = 0
+        }
+        if (this.position.x + this.width >= canvas.width) {
+            this.position.x = canvas.width - this.width
+        }
+
+        /*gravity system */
         if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
             this.velocity.vy = 0 
             this.currentJumps = 0
@@ -97,8 +106,15 @@ class spriteTWO {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
 
-        /*gravity system */
+        /*preventing player from running off canvas */
+        if (this.position.x <= 0) {
+            this.position.x = 0
+        }
+        if (this.position.x + this.width >= canvas.width) {
+            this.position.x = canvas.width - this.width
+        }
 
+        /*gravity system */
         if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
             this.velocity.vy = 0
             this.currentJumps = 0
