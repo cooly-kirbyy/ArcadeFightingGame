@@ -169,20 +169,36 @@ function animateFrames() {
     playertwo.update()
     window.requestAnimationFrame(animateFrames)
 
+    /*player one collision logic */
     if (playerone.attackHitBox.position.x + playerone.attackHitBox.widthr >= playertwo.position.x 
         && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
-        && playerone.attackActive) {
+        && playerone.attackActive) { /*for right facing */
         console.log('player two was hit')
     }
-
+    if (playerone.attackHitBox.position.x + playerone.attackHitBox.widthl <= playertwo.position.x + playertwo.width
+        && playerone.attackHitBox.position.x + playerone.attackHitBox.widthl >= playertwo.position.x
+        && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
+        && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
+        && playerone.attackActive) { /*for left facing */
+            console.log('player two was hit')
+    }
+ 
+    /*player two collision logic */
     if (playertwo.attackHitBox.position.x >= playerone.position.x 
-        && playertwo.attackHitBox.position.x + playertwo.attackHitBox.width <= playerone.position.x + playerone.width
+        && playertwo.attackHitBox.position.x + playertwo.attackHitBox.widthl <= playerone.position.x + playerone.width
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
         && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
-        && playertwo.attackActive) {
-        console.log('player one was hit')
+        && playertwo.attackActive) { /*for left facing */
+            console.log('player one was hit')
+    }
+    if (playertwo.attackHitBox.position.x + playertwo.attackHitBox.widthr >= playerone.position.x
+        && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width 
+        && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
+        && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
+        && playertwo.attackActive) { // for right facing 
+            console.log('player one was hit')
     }
 }
 animateFrames()
@@ -228,7 +244,6 @@ window.addEventListener('keydown', function(p){
     }
     else if (p.code === 'KeyF') {
         playerone.attack()
-        console.log('p1 attack:', playerone.attackActive)
     }
 
     
@@ -252,7 +267,6 @@ window.addEventListener('keydown', function(p){
     }
     else if (p.code === 'Comma') {
         playertwo.attack()
-        console.log('p2 attack:', playertwo.attackActive)
     }
 })
 
@@ -267,10 +281,7 @@ window.addEventListener('keyup', function(p){
     else if (p.code === 'KeyS') {
         playerOneHeight(150)
     }
-    else if (p.code === 'KeyF') {
-        console.log('p1 attack:',playerone.attackActive)
-    }
-    
+
     /*second player controls */
     else if (p.code === 'ArrowRight') {
         playertwo.velocity.vxr = 0
@@ -280,8 +291,5 @@ window.addEventListener('keyup', function(p){
     }
     else if (p.code === 'ArrowDown') {
         playerTwoHeight(150) 
-    }
-    else if (p.code === 'Comma') {
-        console.log('p2 attack:', playertwo.attackActive)
     }
 })
