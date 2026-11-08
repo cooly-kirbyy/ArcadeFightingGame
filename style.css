@@ -1,4 +1,32 @@
 canvas {                /*centering canvas*/
     display:block;
     margin: 0 auto;
+    z-index: 1;
+}
+
+.game-container {
+    position: relative;
+    z-index: 5;
+    width: 1024px;
+    height: 576px;
+    margin: 0 auto;
+    border: 2px solid black;
+
+    display: flex;
+    justify-content: center;
+}
+
+.health-bar-container {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    width: 1024px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+#timer {
+    height: 30px;
+    width: 100px;
+    background-color: black;
 }
