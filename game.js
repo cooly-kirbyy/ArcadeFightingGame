@@ -6,7 +6,7 @@ class spriteONE {
     constructor({position, velocity, currentJumps = 0, jumpMax = 2}) {
         this.position = position
         this.velocity = velocity
-        this.height = 200
+        this.height = 150
         this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
@@ -62,7 +62,7 @@ class spriteTWO {
     constructor({position, velocity, currentJumps = 0, jumpMax = 2}) {
         this.position = position
         this.velocity = velocity
-        this.height = 200
+        this.height = 150
         this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
@@ -205,12 +205,12 @@ window.addEventListener('keydown', function(p){
         console.log(playerone.currentJumps, playerone.jumpMax)
 
         if (playerone.currentJumps < playerone.jumpMax) {
-            playerone.velocity.vy = -10
+            playerone.velocity.vy = -9
             playerone.currentJumps++ 
         }
     }
     else if (p.code === 'KeyS') {
-        playerOneHeight(100)
+        playerOneHeight(75)
         console.log('S key was pressed')
     }
     else if (p.code === 'KeyF') {
@@ -232,12 +232,12 @@ window.addEventListener('keydown', function(p){
         console.log(playertwo.currentJumps, playertwo.jumpMax)
 
         if (playertwo.currentJumps < playertwo.jumpMax) {
-            playertwo.velocity.vy = -10
+            playertwo.velocity.vy = -9
             playertwo.currentJumps++
         }
     }
     else if (p.code === 'ArrowDown') {
-        playerTwoHeight(100)
+        playerTwoHeight(75)
         console.log('Down arrow key was pressed')
     }
     else if (p.code === 'Comma') {
@@ -260,7 +260,7 @@ window.addEventListener('keyup', function(p){
         console.log('W key was let go')
     }
     else if (p.code === 'KeyS') {
-        playerOneHeight(200)
+        playerOneHeight(150)
         console.log('S key was let go')
     }
     else if (p.code === 'KeyF') {
@@ -280,7 +280,7 @@ window.addEventListener('keyup', function(p){
         console.log('Up arrow key was let go')
     }
     else if (p.code === 'ArrowDown') {
-        playerTwoHeight(200) 
+        playerTwoHeight(150) 
         console.log('Down arrow key was let go')
     }
     else if (p.code === 'Comma') {
