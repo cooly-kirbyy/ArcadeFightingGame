@@ -174,7 +174,7 @@ function animateFrames() {
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.attackActive) {
-        console.log('player two was hit')
+        console.log('player one was hit')
     }
 
     if (playertwo.attackHitBox.position.x >= playerone.position.x 
@@ -211,11 +211,9 @@ window.addEventListener('keydown', function(p){
     /*first player controls*/
     if (p.code === 'KeyD') {
         playerone.velocity.vxr = 5
-        console.log('D key was pressed')
     }
     else if (p.code === 'KeyA') {
         playerone.velocity.vxl = -5
-        console.log('A key was pressed')
     }
     else if (p.code === 'KeyW') {
         console.log(playerone.currentJumps, playerone.jumpMax)
@@ -227,22 +225,19 @@ window.addEventListener('keydown', function(p){
     }
     else if (p.code === 'KeyS') {
         playerOneHeight(75)
-        console.log('S key was pressed')
     }
     else if (p.code === 'KeyF') {
         playerone.attack()
-        console.log('p1 attack:',playerone.attackActive)
+        console.log('p1 attack:', playerone.attackActive)
     }
 
     
     /*second player controls */
     else if (p.code === 'ArrowRight') {
         playertwo.velocity.vxr = 5
-        console.log('Right arrow key was pressed')
     }
     else if (p.code === 'ArrowLeft') {
         playertwo.velocity.vxl = -5
-        console.log('Left arrow key was pressed')
     }
     else if (p.code === 'ArrowUp') {
         console.log(playertwo.currentJumps, playertwo.jumpMax)
@@ -254,11 +249,10 @@ window.addEventListener('keydown', function(p){
     }
     else if (p.code === 'ArrowDown') {
         playerTwoHeight(75)
-        console.log('Down arrow key was pressed')
     }
     else if (p.code === 'Comma') {
         playertwo.attack()
-        console.log('p2 attack:',playertwo.attackActive)
+        console.log('p2 attack:', playertwo.attackActive)
     }
 })
 
@@ -266,18 +260,12 @@ window.addEventListener('keyup', function(p){
     /*first player controls*/
     if (p.code === 'KeyD') {
         playerone.velocity.vxr = 0
-        console.log('D key was let go')
     }
     else if (p.code === 'KeyA') {
         playerone.velocity.vxl = 0
-        console.log('A key was let go')
-    }
-    else if (p.code === 'KeyW') {
-        console.log('W key was let go')
     }
     else if (p.code === 'KeyS') {
         playerOneHeight(150)
-        console.log('S key was let go')
     }
     else if (p.code === 'KeyF') {
         console.log('p1 attack:',playerone.attackActive)
@@ -286,18 +274,12 @@ window.addEventListener('keyup', function(p){
     /*second player controls */
     else if (p.code === 'ArrowRight') {
         playertwo.velocity.vxr = 0
-        console.log('Right arrow key was let go')
     }
     else if (p.code === 'ArrowLeft') {
         playertwo.velocity.vxl = 0
-        console.log('Left arrow key was let go')
-    }
-    else if (p.code === 'ArrowUp') {
-        console.log('Up arrow key was let go')
     }
     else if (p.code === 'ArrowDown') {
         playerTwoHeight(150) 
-        console.log('Down arrow key was let go')
     }
     else if (p.code === 'Comma') {
         console.log('p2 attack:', playertwo.attackActive)
