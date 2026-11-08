@@ -1,5 +1,8 @@
 const canvas = document.getElementById('game-screen');
 const ctext = canvas.getContext('2d')
+const plOneHealthBar = document.getElementById('p1health')
+const plTwoHealthBar = document.getElementById('p2health')
+const healthMax = 100
 const grav = 0.4
 
 class spriteONE {
@@ -10,6 +13,7 @@ class spriteONE {
         this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
+        this.currentHealth = healthMax
         this.attackActive = false
         this.attackHitBox = {
             position: this.position,
@@ -75,6 +79,8 @@ class spriteTWO {
         this.width = 75
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
+        this.currentHealth = healthMax
+
         this.attackActive = false
         this.attackHitBox = {
             position: this.position,
@@ -175,7 +181,8 @@ function animateFrames() {
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.attackActive) { /*for right facing */
-        console.log('player two was hit')
+            console.log('player two was hit')
+            plTwoHealthBar.style.width = '20%'
     }
     if (playerone.attackHitBox.position.x + playerone.attackHitBox.widthl <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.x + playerone.attackHitBox.widthl >= playertwo.position.x
