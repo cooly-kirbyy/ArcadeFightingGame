@@ -174,6 +174,8 @@ let p2damage = 0
 function healthCalc() {
     const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100     
     const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100
+    p2HealthBar.style.width = `${p2HealthPercent}%`
+    p1HealthBar.style.width = `${p1HealthPercent}%`
     return {p2HealthPercent, p1HealthPercent}
 }
 healthCalc()
