@@ -12,13 +12,13 @@ Player One:
     A: Move Left   
     D: Move Right   
     S: Crouch    
+    F: Punch
     
 Player Two:
     Up Arrow Key: Jump (You can also double jump.)   
     Left Arrow Key: Move Left    
     Right Arrow Key: Move Right   
     Down Arrow Key: Crouch    
+    Comma: Punch
 
-To hit the other player, simply collide your yellow attack hitbox into the other player. (No attack button yet!)
-
-![picture of the game running in browser](assets/for-readme/running-proof.png)
+![picture of the game running in browser](assets/for-readme/updated-proof.png)
