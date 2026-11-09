@@ -67,7 +67,7 @@ class spriteONE {
         this.attackActive = true
         setTimeout(() => {
             this.attackActive = false
-        }, 100)
+        }, 10)
     }
 }
 
@@ -174,16 +174,15 @@ function healthCalc() {
     playertwo.currentHealth -= p2damage
     const p2HealthPercent = (playertwo.currentHealth / healthMax) * 100 
     const p1HealthPercent = (playerone.currentHealth / healthMax) * 100
-    p2HealthBar.style.width = (p2HealthPercent)
-    p1HealthBar.style.width = (p1HealthPercent)
+    console.log(p2HealthPercent)
 }
+healthCalc()
 
 function animateFrames() {
     ctext.fillStyle = 'white'
     ctext.fillRect(0,0,canvas.width,canvas.height)
     playerone.update()
     playertwo.update()
-    healthCalc()
     window.requestAnimationFrame(animateFrames)
 
     /*player one collision logic */
@@ -193,6 +192,7 @@ function animateFrames() {
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.attackActive) { /*for right facing */
             p2damage += 1
+            healthCalc()
             console.log('player two was hit', p2damage)
     }
     if (playerone.attackHitBox.position.x + playerone.attackHitBox.widthl <= playertwo.position.x + playertwo.width
