@@ -7,6 +7,17 @@ const playerTwoWin = document.getElementById('playeroneloss')
 const healthMax = 100
 const grav = 0.4
 
+
+let timer = 15
+function timerRun() {
+    setTimeout(timerRun, 1000)
+    if (timer > 0) {
+        timer--
+        console.log(timer)
+    }
+}
+timerRun()
+
 class spriteONE {
     constructor({position, velocity, currentJumps = 0, jumpMax = 2}) {
         this.position = position
