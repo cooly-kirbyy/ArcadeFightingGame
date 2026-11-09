@@ -170,11 +170,10 @@ console.log(playertwo)
 let p1damage = 0
 let p2damage = 0
 function healthCalc() {
-    playerone.currentHealth -= p1damage
-    playertwo.currentHealth -= p2damage
-    const p2HealthPercent = (playertwo.currentHealth / healthMax) * 100 
-    const p1HealthPercent = (playerone.currentHealth / healthMax) * 100
-    console.log(p2HealthPercent)
+    const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100 
+    const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100
+    console.log('player2 health:',p2HealthPercent)
+    console.log('player1 health:',p1HealthPercent)
 }
 healthCalc()
 
@@ -193,7 +192,6 @@ function animateFrames() {
         && playerone.attackActive) { /*for right facing */
             p2damage += 1
             healthCalc()
-            console.log('player two was hit', p2damage)
     }
     if (playerone.attackHitBox.position.x + playerone.attackHitBox.widthl <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.x + playerone.attackHitBox.widthl >= playertwo.position.x
