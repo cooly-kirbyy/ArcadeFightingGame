@@ -132,7 +132,7 @@ class spriteTWO {
         this.attackActive = true
         setTimeout(() => {
             this.attackActive = false
-        }, 100)
+        }, 10)
     }
 }
 
@@ -167,15 +167,17 @@ const playertwo = new spriteTWO({
 playertwo.draw()
 console.log(playertwo)
 
+
+// damage calculation
 let p1damage = 0
 let p2damage = 0
 function healthCalc() {
-    const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100 
+    const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100     
     const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100
-    console.log('player2 health:',p2HealthPercent)
-    console.log('player1 health:',p1HealthPercent)
+    return {p2HealthPercent, p1HealthPercent}
 }
 healthCalc()
+
 
 function animateFrames() {
     ctext.fillStyle = 'white'
@@ -190,15 +192,18 @@ function animateFrames() {
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.attackActive) { /*for right facing */
-            p2damage += 1
-            healthCalc()
+            p2damage += 6.25
+            const health = healthCalc()
+            console.log(health)
     }
     if (playerone.attackHitBox.position.x + playerone.attackHitBox.widthl <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.x + playerone.attackHitBox.widthl >= playertwo.position.x
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.attackActive) { /*for left facing */
-            console.log('player two was hit')
+            p2damage += 6.25
+            const health = healthCalc()
+            console.log(health)
     }
  
     /*player two collision logic */
@@ -207,14 +212,18 @@ function animateFrames() {
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
         && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
         && playertwo.attackActive) { /*for left facing */
-            console.log('player one was hit')
+            p1damage += 6.25
+            const health = healthCalc()
+            console.log(health)
     }
     if (playertwo.attackHitBox.position.x + playertwo.attackHitBox.widthr >= playerone.position.x
         && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width 
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
         && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
         && playertwo.attackActive) { // for right facing 
-            console.log('player one was hit')
+            p1damage += 6.25
+            const health = healthCalc()
+            console.log(health)
     }
 }
 animateFrames()
