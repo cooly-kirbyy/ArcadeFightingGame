@@ -87,12 +87,23 @@ canvas {                /*centering canvas*/
 
 #playeroneloss {
     visibility: hidden;
+    padding-top: 25px;
+    color: rgb(255, 65, 65);
+    font-size: 50px;
+    font-family: "Luckiest Guy", cursive;
+    text-align: center;
 }
 #playeroneloss.win-reveal {
     visibility: visible;
 }
+
 #playertwoloss {
     visibility: hidden;
+    padding-top: 25px;
+    color: rgb(255, 65, 65);
+    font-size: 50px;
+    font-family: "Luckiest Guy", cursive;
+    text-align: center;
 }
 #playertwoloss.win-reveal {
     visibility: visible

@@ -193,8 +193,8 @@ function healthCalc() {
     }
     else {
         playerTwoWin.classList.remove('win-reveal')
-    }
-    
+    } 
+
     return {p2HealthPercent, p1HealthPercent}
 }
 healthCalc()
