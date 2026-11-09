@@ -2,6 +2,8 @@ const canvas = document.getElementById('game-screen');
 const ctext = canvas.getContext('2d')
 const p1HealthBar = document.getElementById('p1health')
 const p2HealthBar = document.getElementById('p2health')
+const playerOneWin = document.getElementById('playertwoloss')
+const playerTwoWin = document.getElementById('playeroneloss')
 const healthMax = 100
 const grav = 0.4
 
@@ -176,6 +178,23 @@ function healthCalc() {
     const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100
     p2HealthBar.style.width = `${p2HealthPercent}%`
     p1HealthBar.style.width = `${p1HealthPercent}%`
+
+    if (p2HealthPercent <= 0) {
+        console.log('player two lost')
+        playerOneWin.classList.add('win-reveal')
+    }
+    else {
+        playerOneWin.classList.remove('win-reveal')
+    }
+
+    if (p1HealthPercent <= 0) {
+        console.log('player one lost')
+        playerTwoWin.classList.add('win-reveal')
+    }
+    else {
+        playerTwoWin.classList.remove('win-reveal')
+    }
+    
     return {p2HealthPercent, p1HealthPercent}
 }
 healthCalc()

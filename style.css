@@ -88,7 +88,16 @@ canvas {                /*centering canvas*/
 #playeroneloss {
     visibility: hidden;
 }
-
-#playertwoloss { 
+#playeroneloss.win-reveal {
+    visibility: visible;
+}
+#playertwoloss {
     visibility: hidden;
+}
+#playertwoloss.win-reveal {
+    visibility: visible
+}
+
+.win-reveal {
+    visibility: visible;
 }
