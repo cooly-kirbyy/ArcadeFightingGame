@@ -14,6 +14,7 @@ function timerRun() {
     if (timer > 0) {
         timer--
         console.log(timer)
+        document.getElementById('timer').textContent = `${timer}`
     }
 }
 timerRun()
