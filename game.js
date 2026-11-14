@@ -36,7 +36,7 @@ function timerRun() {
             console.log('player two has won')
             playerTwoWin.classList.add('win-reveal')
         }
-    }
+    } 
 }
 timerRun()
 
@@ -214,18 +214,10 @@ function healthCalc() {
         console.log('player two lost')
         playerOneWin.classList.add('win-reveal')
     }
-    else {
-        playerOneWin.classList.remove('win-reveal')
-    }
-
     if (p1HealthPercent <= 0) {
         console.log('player one lost')
         playerTwoWin.classList.add('win-reveal')
     }
-    else {
-        playerTwoWin.classList.remove('win-reveal')
-    } 
-
     return {p2HealthPercent, p1HealthPercent}
 }
 healthCalc()
