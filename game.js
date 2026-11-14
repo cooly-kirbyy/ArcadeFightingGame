@@ -243,7 +243,7 @@ function animateFrames() {
         && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
-        && playerone.attackActive) { /*for right facing */
+        && playerone.attackActive && timer > 0) { /*for right facing */
             p2damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -252,7 +252,7 @@ function animateFrames() {
         && playerone.attackHitBox.position.x + playerone.attackHitBox.widthl >= playertwo.position.x
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
-        && playerone.attackActive) { /*for left facing */
+        && playerone.attackActive && timer > 0) { /*for left facing */
             p2damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -263,7 +263,7 @@ function animateFrames() {
         && playertwo.attackHitBox.position.x + playertwo.attackHitBox.widthl <= playerone.position.x + playerone.width
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
         && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
-        && playertwo.attackActive) { /*for left facing */
+        && playertwo.attackActive && timer > 0) { /*for left facing */
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -272,7 +272,7 @@ function animateFrames() {
         && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width 
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
         && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
-        && playertwo.attackActive) { // for right facing 
+        && playertwo.attackActive && timer > 0) { // for right facing 
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
