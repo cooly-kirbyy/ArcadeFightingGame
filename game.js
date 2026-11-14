@@ -4,17 +4,35 @@ const p1HealthBar = document.getElementById('p1health')
 const p2HealthBar = document.getElementById('p2health')
 const playerOneWin = document.getElementById('playertwoloss')
 const playerTwoWin = document.getElementById('playeroneloss')
+const playerTie = document.getElementById('playertie')
 const healthMax = 100
 const grav = 0.4
 
+let p1damage = 0
+let p2damage = 0
 
 let timer = 15
 function timerRun() {
+    const {p2HealthPercent, p1HealthPercent} = healthCalc()
+
     setTimeout(timerRun, 1000)
     if (timer > 0) {
         timer--
         console.log(timer)
         document.getElementById('timer').textContent = `${timer}`
+    }
+
+    if (timer <= 0) {
+        if (p1HealthPercent === p2HealthPercent) {
+            console.log('players are tied')
+        }
+
+        else if (p1HealthPercent > p2HealthPercent) {
+
+        }
+        else if (p1HealthPercent < p2HealthPercent) {
+
+        }
     }
 }
 timerRun()
@@ -183,8 +201,6 @@ console.log(playertwo)
 
 
 // damage calculation
-let p1damage = 0
-let p2damage = 0
 function healthCalc() {
     const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100     
     const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100

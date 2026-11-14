@@ -113,6 +113,18 @@ canvas {                /*centering canvas*/
     visibility: visible
 }
 
+#playertie {
+    visibility: hidden;
+    padding-top: 25px;
+    color: rgb(255, 65, 65); 
+    font-size: 50px;
+    font-family: "Luckiest Guy", cursive;
+    text-align: center;
+}
+#playertie.win-reveal {
+    visibility: visible;
+}
+
 .win-reveal {
     visibility: visible;
 }
