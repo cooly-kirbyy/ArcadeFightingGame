@@ -218,10 +218,16 @@ function healthCalc() {
     if (p2HealthPercent <= 0) {
         console.log('player two lost')
         playerOneWin.classList.add('win-reveal')
+
+        playerTwoHeight(60)
+        playertwo.width = 150
     }
     if (p1HealthPercent <= 0) {
         console.log('player one lost')
         playerTwoWin.classList.add('win-reveal')
+
+        playerOneHeight(60)
+        playerone.width = 150
     }
     return {p2HealthPercent, p1HealthPercent}
 }
@@ -299,50 +305,57 @@ function playerTwoHeight(updatedHeight) {
 /* CONTROLS */
 
 window.addEventListener('keydown', function(p){
-    /*first player controls*/
-    if (p.code === 'KeyD') {
-        playerone.velocity.vxr = 5
-    }
-    else if (p.code === 'KeyA') {
-        playerone.velocity.vxl = -5
-    }
-    else if (p.code === 'KeyW') {
-        console.log(playerone.currentJumps, playerone.jumpMax)
+    const {p2HealthPercent, p1HealthPercent} = healthCalc()
 
-        if (playerone.currentJumps < playerone.jumpMax) {
+        /*first player controls*/
+    if (p1HealthPercent > 0) {
+        if (p.code === 'KeyD') {
+        playerone.velocity.vxr = 5
+        }
+        else if (p.code === 'KeyA') {
+        playerone.velocity.vxl = -5
+        }
+        else if (p.code === 'KeyW') {
+            console.log(playerone.currentJumps, playerone.jumpMax)
+
+            if (playerone.currentJumps < playerone.jumpMax) {
             playerone.velocity.vy = -9
             playerone.currentJumps++ 
+            }
+        }
+        else if (p.code === 'KeyS') {
+        playerOneHeight(75)
+        }
+        else if (p.code === 'KeyF') {
+        playerone.attack()
         }
     }
-    else if (p.code === 'KeyS') {
-        playerOneHeight(75)
-    }
-    else if (p.code === 'KeyF') {
-        playerone.attack()
-    }
-
     
-    /*second player controls */
-    else if (p.code === 'ArrowRight') {
-        playertwo.velocity.vxr = 5
-    }
-    else if (p.code === 'ArrowLeft') {
-        playertwo.velocity.vxl = -5
-    }
-    else if (p.code === 'ArrowUp') {
-        console.log(playertwo.currentJumps, playertwo.jumpMax)
 
-        if (playertwo.currentJumps < playertwo.jumpMax) {
+    /*second player controls */
+    if (p2HealthPercent > 0) {
+        if (p.code === 'ArrowRight') {
+            playertwo.velocity.vxr = 5
+        }
+        else if (p.code === 'ArrowLeft') {
+            playertwo.velocity.vxl = -5
+        }
+        else if (p.code === 'ArrowUp') {
+            console.log(playertwo.currentJumps, playertwo.jumpMax)
+
+            if (playertwo.currentJumps < playertwo.jumpMax) {
             playertwo.velocity.vy = -9
             playertwo.currentJumps++
+            }
+        }
+        else if (p.code === 'ArrowDown') {
+            playerTwoHeight(75)
+        }
+        else if (p.code === 'Comma') {
+            playertwo.attack()
         }
     }
-    else if (p.code === 'ArrowDown') {
-        playerTwoHeight(75)
-    }
-    else if (p.code === 'Comma') {
-        playertwo.attack()
-    }
+
 })
 
 window.addEventListener('keyup', function(p){
