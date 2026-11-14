@@ -83,10 +83,10 @@ canvas {                /*centering canvas*/
     z-index: 5;
     top: 180px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+}
+.game-loss > div {
+    grid-area: 1 / 1;
 }
 
 #playeroneloss {
@@ -96,6 +96,7 @@ canvas {                /*centering canvas*/
     font-size: 50px;
     font-family: "Luckiest Guy", cursive;
     text-align: center;
+    z-index: 6;
 }
 #playeroneloss.win-reveal {
     visibility: visible;
@@ -108,6 +109,7 @@ canvas {                /*centering canvas*/
     font-size: 50px;
     font-family: "Luckiest Guy", cursive;
     text-align: center;
+    z-index: 7;
 }
 #playertwoloss.win-reveal {
     visibility: visible
@@ -120,6 +122,7 @@ canvas {                /*centering canvas*/
     font-size: 50px;
     font-family: "Luckiest Guy", cursive;
     text-align: center;
+    z-index: 8;
 }
 #playertie.win-reveal {
     visibility: visible;
