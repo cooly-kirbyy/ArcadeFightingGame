@@ -12,10 +12,11 @@ let p1damage = 0
 let p2damage = 0
 
 let timer = 15
+let timerID
 function timerRun() {
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
 
-    setTimeout(timerRun, 1000)
+   timerID = setTimeout(timerRun, 1000)
     if (timer > 0) {
         timer--
         console.log(timer)
@@ -37,6 +38,10 @@ function timerRun() {
             playerTwoWin.classList.add('win-reveal')
         }
     } 
+
+    if (p1HealthPercent <= 0 || p2HealthPercent <= 0) {
+        clearTimeout(timerID)
+    }
 }
 timerRun()
 
