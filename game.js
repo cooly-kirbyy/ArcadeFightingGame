@@ -25,13 +25,16 @@ function timerRun() {
     if (timer <= 0) {
         if (p1HealthPercent === p2HealthPercent) {
             console.log('players are tied')
+            playerTie.classList.add('win-reveal')
         }
 
         else if (p1HealthPercent > p2HealthPercent) {
-
+            console.log('player one has won')
+            playerOneWin.classList.add('win-reveal')
         }
         else if (p1HealthPercent < p2HealthPercent) {
-
+            console.log('player two has won')
+            playerTwoWin.classList.add('win-reveal')
         }
     }
 }
