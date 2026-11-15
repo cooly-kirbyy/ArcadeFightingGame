@@ -476,17 +476,31 @@ function playerTwoHeight(updatedHeight) {
 /* CONTROLS */
 
 const pressedKeys = new Set()
+let slideTimerID
 window.addEventListener('keydown', function(p){
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
     pressedKeys.add(p.code)
 
-        /*first player controls*/
+        // FIRST PLAYER CONTROLS
+            // COMBINATIONS 
     if (p1HealthPercent > 0) {
-        if (pressedKeys.has('KeyS') && pressedKeys.has('KeyD')) {
-            playerone.velocity.vxr = 5
+        if (pressedKeys.has('KeyS') && pressedKeys.has('KeyD') && !p.repeat) {
+            console.log('sliding')
+            playerone.velocity.vxr = 10
+            playerOneHeight(75)
+
+            this.clearTimeout(slideTimerID)
+            slideTimerID = this.setTimeout(() => {
+                playerone.velocity.vxr = 0.5
+                console.log('sliding slow')
+            }, 300)
+        }
+        else if (pressedKeys.has('KeyS') && pressedKeys.has('KeyA')) {
+            playerone.velocity.vxl = -5
             playerOneHeight(75)
             console.log('sliding')
         }
+            // SINGLE KEY CONTROLS
         else if (p.code === 'KeyD') {
         playerone.velocity.vxr = 5
         }
@@ -516,7 +530,8 @@ window.addEventListener('keydown', function(p){
     }
     
 
-    /*second player controls */
+    // PLAYER TWO CONTROLS
+        // SINGLE KEY CONTROLS
     if (p2HealthPercent > 0) {
         if (p.code === 'ArrowRight') {
             playertwo.velocity.vxr = 5
@@ -549,7 +564,10 @@ window.addEventListener('keydown', function(p){
 window.addEventListener('keyup', function(p){
     pressedKeys.delete(p.code)
 
-    /*first player controls*/
+    // PLAYER ONE CONTROLS 
+        // COMBINATIONS
+ 
+        // SINGLE KEY CONTROLS
     if (p.code === 'KeyD') {
         playerone.velocity.vxr = 0
     }
