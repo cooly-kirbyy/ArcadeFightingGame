@@ -102,8 +102,9 @@ canvas {                /*centering canvas*/
 #restart {
     visibility: hidden;
     text-decoration: none;
-    color:black;
+    color: rgb(14, 0, 26);
     font-size: 20px;
+    font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 #restart.win-reveal {
@@ -113,7 +114,7 @@ canvas {                /*centering canvas*/
 #playeroneloss {
     visibility: hidden;
     padding-top: 25px;
-    color: rgb(255, 65, 65);
+    color: rgb(14, 0, 26);
     font-size: 50px;
     font-family: "Luckiest Guy", cursive;
     text-align: center;
@@ -126,7 +127,7 @@ canvas {                /*centering canvas*/
 #playertwoloss {
     visibility: hidden;
     padding-top: 25px;
-    color: rgb(255, 65, 65);
+    color: rgb(14, 0, 26);
     font-size: 50px;
     font-family: "Luckiest Guy", cursive;
     text-align: center;
@@ -139,7 +140,7 @@ canvas {                /*centering canvas*/
 #playertie {
     visibility: hidden;
     padding-top: 25px;
-    color: rgb(255, 65, 65); 
+    color: rgb(14, 0, 26); 
     font-size: 50px;
     font-family: "Luckiest Guy", cursive;
     text-align: center;

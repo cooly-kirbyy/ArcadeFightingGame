@@ -63,11 +63,22 @@ class spriteONE {
         this.attackCooldown = false
         this.attackAlreadyHit = false
 
+        this.kickActive = false
+        this.kickCooldown = false
+        this.kickAlreadyHit = false
+
         this.attackHitBox = {
             position: this.position,
-            widthr: 150,
-            widthl: -75,
+            widthr: 155,
+            widthl: -80,
             height: 50
+        }
+
+        this.kickAttackHitBox = {
+            position: this.position,
+            widthr: 195,
+            widthl: -120,
+            height: 50,
         }
     }
 
@@ -75,7 +86,7 @@ class spriteONE {
         ctext.fillStyle = 'blue'
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
 
-        /*attack hitbox */
+        /* punch attack hitbox */
         if (this.attackActive === true) {
             if (this.position.x < playertwo.position.x) {
                 ctext.fillStyle = 'yellow'
@@ -86,6 +97,18 @@ class spriteONE {
                 ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthl, this.attackHitBox.height)
             }
         }  
+
+        // kick attack hitbox
+        if (this.kickActive === true) {
+            if (this.position.x < playertwo.position.x) {
+                ctext.fillStyle = 'red'
+                ctext.fillRect(this.kickAttackHitBox.position.x, this.kickAttackHitBox.position.y + 25, this.kickAttackHitBox.widthr, this.kickAttackHitBox.height)
+            }
+            else if (this.position.x > playertwo.position.x) {
+                ctext.fillStyle = 'red'
+                ctext.fillRect(this.kickAttackHitBox.position.x, this.kickAttackHitBox.position.y + 25, this.kickAttackHitBox.widthl, this.kickAttackHitBox.height)
+            }
+        }
     }
 
     update() {
@@ -126,6 +149,22 @@ class spriteONE {
             this.attackCooldown = false
         },180)
     }
+
+    kickAttack() {
+        if (this.kickCooldown) return
+
+        this.kickCooldown = true
+        this.kickActive = true
+        this.kickAlreadyHit = false
+
+        setTimeout(() => {
+            this.kickActive = false
+        }, 100)
+
+        setTimeout(() => {
+            this.kickCooldown = false
+        },250)
+    }
 }
 
 class spriteTWO {
@@ -144,8 +183,8 @@ class spriteTWO {
 
         this.attackHitBox = {
             position: this.position,
-            widthl: -75,
-            widthr: 150,
+            widthl: -80,
+            widthr: 155,
             height: 50
         }
     }
@@ -367,6 +406,9 @@ window.addEventListener('keydown', function(p){
         }
         else if (p.code === 'KeyF') {
         playerone.attack()
+        }
+        else if (p.code === 'KeyG') {
+            playerone.kickAttack()
         }
     }
     
