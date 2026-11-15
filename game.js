@@ -355,7 +355,8 @@ function animateFrames() {
     window.requestAnimationFrame(animateFrames)
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
 
-    /*player one collision logic */
+    // PLAYER ONE COLLISION LOGIC 
+        // PUNCHING 
     if (playerone.punchAttackHitBox.position.x + playerone.punchAttackHitBox.widthr >= playertwo.position.x 
         && playerone.punchAttackHitBox.position.x <= playertwo.position.x + playertwo.width
         && playerone.punchAttackHitBox.position.y + playerone.punchAttackHitBox.height >= playertwo.position.y
@@ -366,7 +367,7 @@ function animateFrames() {
             p2damage += 6.25
             const health = healthCalc()
             console.log(health)
-    }
+        }
     if (playerone.punchAttackHitBox.position.x + playerone.punchAttackHitBox.widthl <= playertwo.position.x + playertwo.width
         && playerone.punchAttackHitBox.position.x + playerone.punchAttackHitBox.widthl >= playertwo.position.x
         && playerone.punchAttackHitBox.position.y + playerone.punchAttackHitBox.height >= playertwo.position.y
@@ -374,10 +375,33 @@ function animateFrames() {
         && playerone.punchActive && timer > 0 && p1HealthPercent > 0
         && !playerone.punchAlreadyHit) { /*for left facing */
             playerone.punchAlreadyHit = true
-            p2damage += 6.25
+            p2damage += 6
             const health = healthCalc()
             console.log(health)
-    }
+        }
+        // KICKING
+    if (playerone.kickAttackHitBox.position.x + playerone.kickAttackHitBox.widthr >= playertwo.position.x 
+        && playerone.kickAttackHitBox.position.x <= playertwo.position.x + playertwo.width
+        && playerone.kickAttackHitBox.position.y + playerone.kickAttackHitBox.height >= playertwo.position.y
+        && playerone.kickAttackHitBox.position.y <= playertwo.position.y + playertwo.height
+        && playerone.kickActive && timer > 0 && p1HealthPercent > 0
+        && !playerone.kickAlreadyHit) { /*for right facing */
+            playerone.kickAlreadyHit = true
+            p2damage += 9
+            const health = healthCalc()
+            console.log(health)
+        }
+    if (playerone.kickAttackHitBox.position.x + playerone.kickAttackHitBox.widthl <= playertwo.position.x + playertwo.width
+        && playerone.kickAttackHitBox.position.x + playerone.kickAttackHitBox.widthl >= playertwo.position.x
+        && playerone.kickAttackHitBox.position.y + playerone.kickAttackHitBox.height >= playertwo.position.y
+        && playerone.kickAttackHitBox.position.y <= playertwo.position.y + playertwo.height
+        && playerone.kickActive && timer > 0 && p1HealthPercent > 0
+        && !playerone.kickAlreadyHit) { /*for left facing */
+            playerone.kickAlreadyHit = true
+            p2damage += 9
+            const health = healthCalc()
+            console.log(health)
+        }
  
     /*player two collision logic */
     if (playertwo.punchAttackHitBox.position.x >= playerone.position.x 
