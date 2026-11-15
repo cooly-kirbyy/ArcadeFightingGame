@@ -475,12 +475,19 @@ function playerTwoHeight(updatedHeight) {
 
 /* CONTROLS */
 
+const pressedKeys = new Set()
 window.addEventListener('keydown', function(p){
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
+    pressedKeys.add(p.code)
 
         /*first player controls*/
     if (p1HealthPercent > 0) {
-        if (p.code === 'KeyD') {
+        if (pressedKeys.has('KeyS') && pressedKeys.has('KeyD')) {
+            playerone.velocity.vxr = 5
+            playerOneHeight(75)
+            console.log('sliding')
+        }
+        else if (p.code === 'KeyD') {
         playerone.velocity.vxr = 5
         }
         else if (p.code === 'KeyA') {
@@ -495,11 +502,12 @@ window.addEventListener('keydown', function(p){
             }
         }
         else if (p.code === 'KeyS') {
-        playerOneHeight(75)
-        }
+                playerOneHeight(75)
+                console.log('crouching')
+            }
         else if (p.code === 'KeyF') {
-        playerone.punchAttack()
-        console.log(playerone.punchActive)
+            playerone.punchAttack()
+            console.log(playerone.punchActive)
         }
         else if (p.code === 'KeyG') {
             playerone.kickAttack()
@@ -539,6 +547,8 @@ window.addEventListener('keydown', function(p){
 })
 
 window.addEventListener('keyup', function(p){
+    pressedKeys.delete(p.code)
+
     /*first player controls*/
     if (p.code === 'KeyD') {
         playerone.velocity.vxr = 0
