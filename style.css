@@ -79,7 +79,7 @@ canvas {                /*centering canvas*/
 .game-loss {
     position: absolute;
     width: 500px;
-    height: 200px;
+    height: 170px;
     z-index: 5;
     top: 180px;
 
@@ -87,6 +87,27 @@ canvas {                /*centering canvas*/
 }
 .game-loss > div {
     grid-area: 1 / 1;
+}
+
+#tryagain-container {
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+#restart {
+    visibility: hidden;
+    text-decoration: none;
+    color:black;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#restart.win-reveal {
+    visibility: visible;
 }
 
 #playeroneloss {
@@ -127,6 +148,8 @@ canvas {                /*centering canvas*/
 #playertie.win-reveal {
     visibility: visible;
 }
+
+
 
 .win-reveal {
     visibility: visible;

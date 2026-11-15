@@ -5,6 +5,7 @@ const p2HealthBar = document.getElementById('p2health')
 const playerOneWin = document.getElementById('playertwoloss')
 const playerTwoWin = document.getElementById('playeroneloss')
 const playerTie = document.getElementById('playertie')
+const tryAgainElement = document.getElementById('restart')
 const healthMax = 100
 const grav = 0.4
 
@@ -27,15 +28,18 @@ function timerRun() {
         if (p1HealthPercent === p2HealthPercent) {
             console.log('players are tied')
             playerTie.classList.add('win-reveal')
+            tryAgainElement.classList.add('win-reveal')
         }
 
         else if (p1HealthPercent > p2HealthPercent) {
             console.log('player one has won')
             playerOneWin.classList.add('win-reveal')
+            tryAgainElement.classList.add('win-reveal')
         }
         else if (p1HealthPercent < p2HealthPercent) {
             console.log('player two has won')
             playerTwoWin.classList.add('win-reveal')
+            tryAgainElement.classList.add('win-reveal')
         }
     } 
 
@@ -243,6 +247,7 @@ function healthCalc() {
     if (p2HealthPercent <= 0) {
         console.log('player two lost')
         playerOneWin.classList.add('win-reveal')
+        tryAgainElement.classList.add('win-reveal')
 
         playerTwoHeight(60)
         playertwo.width = 150
@@ -250,6 +255,7 @@ function healthCalc() {
     if (p1HealthPercent <= 0) {
         console.log('player one lost')
         playerTwoWin.classList.add('win-reveal')
+        tryAgainElement.classList.add('win-reveal')
 
         playerOneHeight(60)
         playerone.width = 150
