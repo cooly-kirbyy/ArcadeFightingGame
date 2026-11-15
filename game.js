@@ -136,6 +136,7 @@ class spriteONE {
 
     attack() {
         if (this.attackCooldown) return
+        if (this.kickCooldown) return
 
         this.attackCooldown = true
         this.attackActive = true
@@ -152,6 +153,7 @@ class spriteONE {
 
     kickAttack() {
         if (this.kickCooldown) return
+        if (this.attackCooldown) return
 
         this.kickCooldown = true
         this.kickActive = true
@@ -252,6 +254,7 @@ class spriteTWO {
 
     attack() {
         if (this.attackCooldown) return
+        if (this.kickCooldown) return
 
         this.attackCooldown = true
         this.attackActive = true
@@ -268,6 +271,7 @@ class spriteTWO {
 
     kickAttack() {
         if (this.kickCooldown) return
+        if (this.attackCooldown) return
 
         this.kickCooldown = true
         this.kickActive = true
