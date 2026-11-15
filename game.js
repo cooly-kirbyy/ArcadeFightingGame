@@ -181,17 +181,29 @@ class spriteTWO {
         this.attackCooldown = false
         this.attackAlreadyHit = false
 
+        this.kickActive = false
+        this.kickCooldown = false
+        this.kickAlreadyHit = false
+
         this.attackHitBox = {
             position: this.position,
             widthl: -80,
             widthr: 155,
             height: 50
         }
+
+        this.kickAttackHitBox = {
+            position: this.position,
+            widthr: 195,
+            widthl: -120,
+            height: 50,
+        }
     }
 
     draw() {
         ctext.fillStyle = 'black'
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
+
         if (this.attackActive === true) {
             if (this.position.x > playerone.position.x) {
                 ctext.fillStyle = 'yellow'
@@ -200,6 +212,17 @@ class spriteTWO {
             else if (this.position.x < playerone.position.x) {
                 ctext.fillStyle = 'yellow'
                 ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthr, this.attackHitBox.height)
+            }
+        }
+
+        if (this.kickActive === true) {
+            if (this.position.x > playerone.position.x) {
+                ctext.fillStyle = 'red'
+                ctext.fillRect(this.kickAttackHitBox.position.x, this.kickAttackHitBox.position.y + 25, this.kickAttackHitBox.widthl, this.kickAttackHitBox.height)
+            }
+            else if (this.position.x < playerone.position.x) {
+                ctext.fillStyle = 'red'
+                ctext.fillRect(this.kickAttackHitBox.position.x, this.kickAttackHitBox.position.y + 25, this.kickAttackHitBox.widthr, this.kickAttackHitBox.height)
             }
         }
     }
@@ -241,6 +264,22 @@ class spriteTWO {
         setTimeout(() => {
             this.attackCooldown = false
         }, 180)
+    }
+
+    kickAttack() {
+        if (this.kickCooldown) return
+
+        this.kickCooldown = true
+        this.kickActive = true
+        this.kickAlreadyHit = false
+
+        setTimeout(() => {
+            this.kickActive = false
+        }, 100)
+
+        setTimeout(() => {
+            this.kickCooldown = false
+        },250)
     }
 }
 
@@ -434,6 +473,9 @@ window.addEventListener('keydown', function(p){
         }
         else if (p.code === 'Comma') {
             playertwo.attack()
+        }
+        else if (p.code === 'Period') {
+            playertwo.kickAttack()
         }
     }
 
