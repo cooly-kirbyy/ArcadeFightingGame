@@ -20,13 +20,11 @@ function timerRun() {
    timerID = setTimeout(timerRun, 1000)
     if (timer > 0) {
         timer--
-        console.log(timer)
         document.getElementById('timer').textContent = `${timer}`
     }
 
     if (timer <= 0) {
         if (p1HealthPercent === p2HealthPercent) {
-            console.log('players are tied')
             playerTie.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
         }
@@ -485,15 +483,20 @@ window.addEventListener('keydown', function(p){
             // COMBINATIONS 
     if (p1HealthPercent > 0) {
         if (pressedKeys.has('KeyS') && pressedKeys.has('KeyD') && !p.repeat) {
-            console.log('sliding')
+        
             playerone.velocity.vxr = 10
+            console.log(playerone.velocity.vxr)
             playerOneHeight(75)
 
             this.clearTimeout(slideTimerID)
             slideTimerID = this.setTimeout(() => {
-                playerone.velocity.vxr = 0.5
+                playerone.velocity.vxr = 1
+                console.log(playerone.velocity.vxr)
                 console.log('sliding slow')
-            }, 300)
+            }, 1000) 
+            this.setTimeout(() => {
+                console.log(playerone.velocity.vxr)
+            }, 1500)
         }
         else if (pressedKeys.has('KeyS') && pressedKeys.has('KeyA')) {
             playerone.velocity.vxl = -5
@@ -569,6 +572,7 @@ window.addEventListener('keyup', function(p){
  
         // SINGLE KEY CONTROLS
     if (p.code === 'KeyD') {
+        this.clearTimeout(slideTimerID)
         playerone.velocity.vxr = 0
     }
     else if (p.code === 'KeyA') {
