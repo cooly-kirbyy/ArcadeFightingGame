@@ -153,7 +153,7 @@ class spriteONE {
 
     kickAttack() {
         if (this.kickCooldown) return
-        if (this.attackCooldown) return
+        if (this.punchCooldown) return
 
         this.kickCooldown = true
         this.kickActive = true
@@ -179,15 +179,15 @@ class spriteTWO {
         this.jumpMax = jumpMax
         this.currentHealth = healthMax
 
-        this.attackActive = false
-        this.attackCooldown = false
-        this.attackAlreadyHit = false
+        this.punchActive = false
+        this.punchCooldown = false
+        this.punchAlreadyHit = false
 
         this.kickActive = false
         this.kickCooldown = false
         this.kickAlreadyHit = false
 
-        this.attackHitBox = {
+        this.punchAttackHitBox = {
             position: this.position,
             widthl: -80,
             widthr: 155,
@@ -206,14 +206,14 @@ class spriteTWO {
         ctext.fillStyle = 'black'
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
 
-        if (this.attackActive === true) {
+        if (this.punchActive === true) {
             if (this.position.x > playerone.position.x) {
                 ctext.fillStyle = 'yellow'
-                ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthl, this.attackHitBox.height)
+                ctext.fillRect(this.punchAttackHitBox.position.x, this.punchAttackHitBox.position.y, this.punchAttackHitBox.widthl, this.punchAttackHitBox.height)
             }
             else if (this.position.x < playerone.position.x) {
                 ctext.fillStyle = 'yellow'
-                ctext.fillRect(this.attackHitBox.position.x, this.attackHitBox.position.y, this.attackHitBox.widthr, this.attackHitBox.height)
+                ctext.fillRect(this.punchAttackHitBox.position.x, this.punchAttackHitBox.position.y, this.punchAttackHitBox.widthr, this.punchAttackHitBox.height)
             }
         }
 
@@ -252,26 +252,26 @@ class spriteTWO {
 
     }   
 
-    attack() {
-        if (this.attackCooldown) return
+    punchAttack() {
+        if (this.punchCooldown) return
         if (this.kickCooldown) return
 
-        this.attackCooldown = true
-        this.attackActive = true
-        this.attackAlreadyHit = false
+        this.punchCooldown = true
+        this.punchActive = true
+        this.punchAlreadyHit = false
 
         setTimeout(() => {
-            this.attackActive = false
+            this.punchActive = false
         }, 100)
 
         setTimeout(() => {
-            this.attackCooldown = false
+            this.punchCooldown = false
         }, 180)
     }
 
     kickAttack() {
         if (this.kickCooldown) return
-        if (this.attackCooldown) return
+        if (this.punchCooldown) return
 
         this.kickCooldown = true
         this.kickActive = true
@@ -361,8 +361,8 @@ function animateFrames() {
         && playerone.punchAttackHitBox.position.y + playerone.punchAttackHitBox.height >= playertwo.position.y
         && playerone.punchAttackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.punchActive && timer > 0 && p1HealthPercent > 0
-        && !playerone.attackAlreadyHit) { /*for right facing */
-            playerone.attackAlreadyHit = true
+        && !playerone.punchAlreadyHit) { /*for right facing */
+            playerone.punchAlreadyHit = true
             p2damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -380,24 +380,24 @@ function animateFrames() {
     }
  
     /*player two collision logic */
-    if (playertwo.attackHitBox.position.x >= playerone.position.x 
-        && playertwo.attackHitBox.position.x + playertwo.attackHitBox.widthl <= playerone.position.x + playerone.width
-        && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
-        && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
-        && playertwo.attackActive && timer > 0 && p2HealthPercent > 0
-        && !playertwo.attackAlreadyHit) { /*for left facing */
-            playertwo.attackAlreadyHit = true
+    if (playertwo.punchAttackHitBox.position.x >= playerone.position.x 
+        && playertwo.punchAttackHitBox.position.x + playertwo.punchAttackHitBox.widthl <= playerone.position.x + playerone.width
+        && playertwo.punchAttackHitBox.position.y + playertwo.punchAttackHitBox.height >= playerone.position.y
+        && playertwo.punchAttackHitBox.position.y <= playerone.position.y + playerone.height
+        && playertwo.punchActive && timer > 0 && p2HealthPercent > 0
+        && !playertwo.punchAlreadyHit) { /*for left facing */
+            playertwo.punchAlreadyHit = true
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
     }
-    if (playertwo.attackHitBox.position.x + playertwo.attackHitBox.widthr >= playerone.position.x
+    if (playertwo.punchAttackHitBox.position.x + playertwo.punchAttackHitBox.widthr >= playerone.position.x
         && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width 
-        && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
-        && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
-        && playertwo.attackActive && timer > 0 && p2HealthPercent > 0
-        && !playertwo.attackAlreadyHit) { // for right facing
-            playertwo.attackAlreadyHit = true 
+        && playertwo.punchAttackHitBox.position.y + playertwo.punchAttackHitBox.height >= playerone.position.y
+        && playertwo.punchAttackHitBox.position.y <= playerone.position.y + playerone.height
+        && playertwo.punchActive && timer > 0 && p2HealthPercent > 0
+        && !playertwo.punchAlreadyHit) { // for right facing
+            playertwo.punchAlreadyHit = true 
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -478,7 +478,8 @@ window.addEventListener('keydown', function(p){
             playerTwoHeight(75)
         }
         else if (p.code === 'Comma') {
-            playertwo.attack()
+            playertwo.punchAttack()
+            console.log(playertwo.punchActive)
         }
         else if (p.code === 'Period') {
             playertwo.kickAttack()
