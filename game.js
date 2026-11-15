@@ -54,7 +54,11 @@ class spriteONE {
         this.currentJumps = currentJumps
         this.jumpMax = jumpMax
         this.currentHealth = healthMax
+
         this.attackActive = false
+        this.attackCooldown = false
+        this.attackAlreadyHit = false
+
         this.attackHitBox = {
             position: this.position,
             widthr: 150,
@@ -104,10 +108,19 @@ class spriteONE {
     }   
 
     attack() {
+        if (this.attackCooldown) return
+
+        this.attackCooldown = true
         this.attackActive = true
+        this.attackAlreadyHit = false
+
         setTimeout(() => {
             this.attackActive = false
-        }, 10)
+        }, 100)
+
+        setTimeout(() => {
+            this.attackCooldown = false
+        },180)
     }
 }
 
@@ -122,6 +135,9 @@ class spriteTWO {
         this.currentHealth = healthMax
 
         this.attackActive = false
+        this.attackCooldown = false
+        this.attackAlreadyHit = false
+
         this.attackHitBox = {
             position: this.position,
             widthl: -75,
@@ -169,10 +185,19 @@ class spriteTWO {
     }   
 
     attack() {
+        if (this.attackCooldown) return
+
+        this.attackCooldown = true
         this.attackActive = true
+        this.attackAlreadyHit = false
+
         setTimeout(() => {
             this.attackActive = false
-        }, 10)
+        }, 100)
+
+        setTimeout(() => {
+            this.attackCooldown = false
+        }, 180)
     }
 }
 
@@ -247,7 +272,9 @@ function animateFrames() {
         && playerone.attackHitBox.position.x <= playertwo.position.x + playertwo.width
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
-        && playerone.attackActive && timer > 0 && p1HealthPercent > 0) { /*for right facing */
+        && playerone.attackActive && timer > 0 && p1HealthPercent > 0
+        && !playerone.attackAlreadyHit) { /*for right facing */
+            playerone.attackAlreadyHit = true
             p2damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -256,7 +283,9 @@ function animateFrames() {
         && playerone.attackHitBox.position.x + playerone.attackHitBox.widthl >= playertwo.position.x
         && playerone.attackHitBox.position.y + playerone.attackHitBox.height >= playertwo.position.y
         && playerone.attackHitBox.position.y <= playertwo.position.y + playertwo.height
-        && playerone.attackActive && timer > 0 && p1HealthPercent > 0) { /*for left facing */
+        && playerone.attackActive && timer > 0 && p1HealthPercent > 0
+        && !playerone.attackAlreadyHit) { /*for left facing */
+            playerone.attackAlreadyHit = true
             p2damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -267,7 +296,9 @@ function animateFrames() {
         && playertwo.attackHitBox.position.x + playertwo.attackHitBox.widthl <= playerone.position.x + playerone.width
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
         && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
-        && playertwo.attackActive && timer > 0 && p2HealthPercent > 0) { /*for left facing */
+        && playertwo.attackActive && timer > 0 && p2HealthPercent > 0
+        && !playertwo.attackAlreadyHit) { /*for left facing */
+            playertwo.attackAlreadyHit = true
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
@@ -276,7 +307,9 @@ function animateFrames() {
         && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width 
         && playertwo.attackHitBox.position.y + playertwo.attackHitBox.height >= playerone.position.y
         && playertwo.attackHitBox.position.y <= playerone.position.y + playerone.height
-        && playertwo.attackActive && timer > 0 && p2HealthPercent > 0) { // for right facing 
+        && playertwo.attackActive && timer > 0 && p2HealthPercent > 0
+        && !playertwo.attackAlreadyHit) { // for right facing
+            playertwo.attackAlreadyHit = true 
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
