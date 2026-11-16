@@ -492,7 +492,6 @@ window.addEventListener('keydown', function(p){
             slideTimerID = this.setTimeout(() => {
                 playerone.velocity.vxr = 1
                 console.log(playerone.velocity.vxr)
-                console.log('sliding slow')
             }, 1000) 
             this.setTimeout(() => {
                 console.log(playerone.velocity.vxr)

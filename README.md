@@ -13,6 +13,7 @@ Player One:
     D: Move Right   
     S: Crouch    
     F: Punch
+    G: Kick
     
 Player Two:
     Up Arrow Key: Jump (You can also double jump.)   
@@ -20,5 +21,6 @@ Player Two:
     Right Arrow Key: Move Right   
     Down Arrow Key: Crouch    
     Comma: Punch
+    Period: Kick
 
-![picture of the game running in browser](assets/for-readme/updated-proof.png)
+![picture of the game running in browser](assets/for-readme/updated-proof2.png)
