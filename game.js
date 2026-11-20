@@ -475,45 +475,43 @@ function playerTwoHeight(updatedHeight) {
 
 const pressedKeys = new Set()
 let slideTimerID
-let slideBoostCompleted = false
+let slideBoostCompletedOne = false
+let slideBoostCompletedTwo = false
 
 window.addEventListener('keydown', function(p){
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
     pressedKeys.add(p.code)
 
         // FIRST PLAYER CONTROLS
-            // COMBINATIONS 
     if (p1HealthPercent > 0) {
+            // COMBINATIONS 
         if (pressedKeys.has('KeyS') && pressedKeys.has('KeyD')) {
 
-            console.log(slideBoostCompleted)
-            if (slideBoostCompleted === false) {
+            if (slideBoostCompletedOne === false) {
                 playerOneHeight(75)
                 playerone.velocity.vxr = 10
 
                 this.setTimeout(() => {
-                slideBoostCompleted = true
+                slideBoostCompletedOne = true
                 }, 500)
             }
 
-            if (slideBoostCompleted === true) {
+            if (slideBoostCompletedOne === true) {
                 playerone.velocity.vxr = 2.5
             }
         }
         else if (pressedKeys.has('KeyS') && pressedKeys.has('KeyA')) {
             
-            console.log(slideBoostCompleted)
-            if (slideBoostCompleted === false) {
-                console.log(slideBoostCompleted)
+            if (slideBoostCompletedOne === false) {
                 playerOneHeight(75)
                 playerone.velocity.vxl = -10
 
                 this.setTimeout(() => {
-                    slideBoostCompleted = true
+                    slideBoostCompletedOne = true
                 }, 500)
             }
 
-            if (slideBoostCompleted === true)
+            if (slideBoostCompletedOne === true)
                 playerone.velocity.vxl = -2.5
         }
 
@@ -548,9 +546,28 @@ window.addEventListener('keydown', function(p){
     
 
     // PLAYER TWO CONTROLS
-        // SINGLE KEY CONTROLS
     if (p2HealthPercent > 0) {
-        if (p.code === 'ArrowRight') {
+        // COMBINATIONS
+        if (pressedKeys.has('ArrowRight') && pressedKeys.has('ArrowDown')) {
+
+            playertwo.velocity.vxr = 10
+
+            /*
+            if (slideBoostCompletedTwo === false) {
+                playerOneHeight(75)
+                playertwo.velocity.vxr = 10
+
+                this.setTimeout(() => {
+                slideBoostCompletedTwo = true
+                }, 500)
+            }
+
+            if (slideBoostCompletedTwo === true) {
+                playertwo.velocity.vxr = 2.5
+            }*/
+        }
+        // SINGLE KEY CONTROLS
+        else if (p.code === 'ArrowRight') {
             playertwo.velocity.vxr = 5
         }
         else if (p.code === 'ArrowLeft') {
@@ -586,13 +603,12 @@ window.addEventListener('keyup', function(p){
  
         // SINGLE KEY CONTROLS
     if (p.code === 'KeyD') {
-       // this.clearTimeout(slideTimerID)
         playerone.velocity.vxr = 0
-        slideBoostCompleted = false
+        slideBoostCompletedOne = false
     }
     else if (p.code === 'KeyA') {
         playerone.velocity.vxl = 0
-        slideBoostCompleted = false
+        slideBoostCompletedOne = false
     }
     else if (p.code === 'KeyS') {
         playerOneHeight(150)
@@ -601,6 +617,7 @@ window.addEventListener('keyup', function(p){
     /*second player controls */
     else if (p.code === 'ArrowRight') {
         playertwo.velocity.vxr = 0
+        slideBoostCompletedTwo = false
     }
     else if (p.code === 'ArrowLeft') {
         playertwo.velocity.vxl = 0
