@@ -549,22 +549,30 @@ window.addEventListener('keydown', function(p){
     if (p2HealthPercent > 0) {
         // COMBINATIONS
         if (pressedKeys.has('ArrowRight') && pressedKeys.has('ArrowDown')) {
-
-            playertwo.velocity.vxr = 10
-
-            /*
             if (slideBoostCompletedTwo === false) {
-                playerOneHeight(75)
+                playerTwoHeight(75)
                 playertwo.velocity.vxr = 10
 
                 this.setTimeout(() => {
                 slideBoostCompletedTwo = true
                 }, 500)
             }
-
             if (slideBoostCompletedTwo === true) {
                 playertwo.velocity.vxr = 2.5
-            }*/
+            }
+        }
+        else if (pressedKeys.has('ArrowLeft') && pressedKeys.has('ArrowDown')) {
+            if (slideBoostCompletedTwo === false) {
+                playerTwoHeight(75)
+                playertwo.velocity.vxl = -10
+
+                this.setTimeout(() => {
+                slideBoostCompletedTwo = true
+                }, 500)
+            }
+            if (slideBoostCompletedTwo === true) {
+                playertwo.velocity.vxl = -2.5
+            }
         }
         // SINGLE KEY CONTROLS
         else if (p.code === 'ArrowRight') {
@@ -621,6 +629,7 @@ window.addEventListener('keyup', function(p){
     }
     else if (p.code === 'ArrowLeft') {
         playertwo.velocity.vxl = 0
+        slideBoostCompletedTwo = false
     }
     else if (p.code === 'ArrowDown') {
         playerTwoHeight(150) 
