@@ -488,7 +488,6 @@ window.addEventListener('keydown', function(p){
 
             console.log(slideBoostCompleted)
             if (slideBoostCompleted === false) {
-                console.log(slideBoostCompleted)
                 playerOneHeight(75)
                 playerone.velocity.vxr = 10
 
@@ -498,32 +497,26 @@ window.addEventListener('keydown', function(p){
             }
 
             if (slideBoostCompleted === true) {
-                console.log(slideBoostCompleted)
-                playerone.velocity.vxr = 1
+                playerone.velocity.vxr = 2.5
             }
-
-           // playerone.velocity.vxr = 1
-           // playerOneHeight(75)
-
-            /*
-            playerone.velocity.vxr = 10
-            console.log(playerone.velocity.vxr)
-            playerOneHeight(75)
-
-            this.clearTimeout(slideTimerID)
-            slideTimerID = this.setTimeout(() => {
-                playerone.velocity.vxr = 1
-                console.log(playerone.velocity.vxr)
-            }, 1000) 
-            this.setTimeout(() => {
-                console.log(playerone.velocity.vxr)
-            }, 1500) */
         }
         else if (pressedKeys.has('KeyS') && pressedKeys.has('KeyA')) {
-            playerone.velocity.vxl = -5
-            playerOneHeight(75)
-            console.log('sliding')
+            
+            console.log(slideBoostCompleted)
+            if (slideBoostCompleted === false) {
+                console.log(slideBoostCompleted)
+                playerOneHeight(75)
+                playerone.velocity.vxl = -10
+
+                this.setTimeout(() => {
+                    slideBoostCompleted = true
+                }, 500)
+            }
+
+            if (slideBoostCompleted === true)
+                playerone.velocity.vxl = -2.5
         }
+
             // SINGLE KEY CONTROLS
         else if (pressedKeys.has('KeyD')) {
         playerone.velocity.vxr = 5
@@ -599,6 +592,7 @@ window.addEventListener('keyup', function(p){
     }
     else if (p.code === 'KeyA') {
         playerone.velocity.vxl = 0
+        slideBoostCompleted = false
     }
     else if (p.code === 'KeyS') {
         playerOneHeight(150)
