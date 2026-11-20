@@ -475,6 +475,8 @@ function playerTwoHeight(updatedHeight) {
 
 const pressedKeys = new Set()
 let slideTimerID
+let slideBoostCompleted = false
+
 window.addEventListener('keydown', function(p){
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
     pressedKeys.add(p.code)
@@ -482,8 +484,26 @@ window.addEventListener('keydown', function(p){
         // FIRST PLAYER CONTROLS
             // COMBINATIONS 
     if (p1HealthPercent > 0) {
-        if (pressedKeys.has('KeyS') && pressedKeys.has('KeyD') && !p.repeat) {
-        
+        if (pressedKeys.has('KeyS') && pressedKeys.has('KeyD')) {
+
+            console.log(slideBoostCompleted)
+            if (slideBoostCompleted === false) {
+                console.log(slideBoostCompleted)
+                playerOneHeight(75)
+
+                this.setTimeout(() => {
+                slideBoostCompleted = true
+                }, 1000)
+            }
+
+            if (slideBoostCompleted === true) {
+                console.log(slideBoostCompleted)
+            }
+
+           // playerone.velocity.vxr = 1
+           // playerOneHeight(75)
+
+            /*
             playerone.velocity.vxr = 10
             console.log(playerone.velocity.vxr)
             playerOneHeight(75)
@@ -495,7 +515,7 @@ window.addEventListener('keydown', function(p){
             }, 1000) 
             this.setTimeout(() => {
                 console.log(playerone.velocity.vxr)
-            }, 1500)
+            }, 1500) */
         }
         else if (pressedKeys.has('KeyS') && pressedKeys.has('KeyA')) {
             playerone.velocity.vxl = -5
@@ -503,7 +523,7 @@ window.addEventListener('keydown', function(p){
             console.log('sliding')
         }
             // SINGLE KEY CONTROLS
-        else if (p.code === 'KeyD') {
+        else if (pressedKeys.has('KeyD')) {
         playerone.velocity.vxr = 5
         }
         else if (p.code === 'KeyA') {
@@ -571,8 +591,9 @@ window.addEventListener('keyup', function(p){
  
         // SINGLE KEY CONTROLS
     if (p.code === 'KeyD') {
-        this.clearTimeout(slideTimerID)
+       // this.clearTimeout(slideTimerID)
         playerone.velocity.vxr = 0
+        slideBoostCompleted = false
     }
     else if (p.code === 'KeyA') {
         playerone.velocity.vxl = 0
