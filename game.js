@@ -490,14 +490,16 @@ window.addEventListener('keydown', function(p){
             if (slideBoostCompleted === false) {
                 console.log(slideBoostCompleted)
                 playerOneHeight(75)
+                playerone.velocity.vxr = 10
 
                 this.setTimeout(() => {
                 slideBoostCompleted = true
-                }, 1000)
+                }, 500)
             }
 
             if (slideBoostCompleted === true) {
                 console.log(slideBoostCompleted)
+                playerone.velocity.vxr = 1
             }
 
            // playerone.velocity.vxr = 1
