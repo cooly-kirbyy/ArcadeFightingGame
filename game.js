@@ -518,7 +518,7 @@ window.addEventListener('keydown', function(p){
         }
 
             // SINGLE KEY CONTROLS
-        else if (pressedKeys.has('KeyD')) {
+        else if (p.code === 'KeyD') {
         playerone.velocity.vxr = 5
         }
         else if (p.code === 'KeyA') {
