@@ -82,7 +82,7 @@ class spriteONE {
         }
 
         this.projAttackHitbox = {
-            position: this.position,
+            position: {x: 0, y: 0},
             width: 50,
             height: 50,
         }
@@ -131,8 +131,8 @@ class spriteONE {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
 
-        this.projAttackHitbox.position.x += this.velocity.pvxl
-        this.projAttackHitbox.position.x += this.velocity.pvxr
+        this.projAttackHitbox.position.x = this.position += this.velocity.pvxl
+        this.projAttackHitbox.position.x = this.position += this.velocity.pvxr
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
