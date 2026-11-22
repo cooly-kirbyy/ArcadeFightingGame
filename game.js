@@ -159,8 +159,6 @@ class spriteONE {
             this.velocity.vy += grav
         } 
 
-
-
         // projectile moving across screen
         if (this.projectileActive === true && this.position.x < playertwo.position.x) {
             this.velocity.pvxr = 15
@@ -238,6 +236,9 @@ class spriteTWO {
         this.kickCooldown = false
         this.kickAlreadyHit = false
 
+        this.projectileActive = false
+        this.projectilePlayerHold = false
+
         this.punchAttackHitBox = {
             position: this.position,
             widthl: -80,
@@ -251,12 +252,19 @@ class spriteTWO {
             widthl: -120,
             height: 50,
         }
+
+        this.projAttackHitbox = {
+            position: {x: this.position.x, y: this.position.y},
+            width: 60,
+            height: 60
+        }
     }
 
     draw() {
         ctext.fillStyle = 'black'
         ctext.fillRect(this.position.x,this.position.y, this.width, this.height)
 
+        // punch hitbox
         if (this.punchActive === true) {
             if (this.position.x > playerone.position.x) {
                 ctext.fillStyle = 'yellow'
@@ -268,6 +276,7 @@ class spriteTWO {
             }
         }
 
+        // kick hitbox
         if (this.kickActive === true) {
             if (this.position.x > playerone.position.x) {
                 ctext.fillStyle = 'red'
@@ -278,14 +287,31 @@ class spriteTWO {
                 ctext.fillRect(this.kickAttackHitBox.position.x, this.kickAttackHitBox.position.y + 25, this.kickAttackHitBox.widthr, this.kickAttackHitBox.height)
             }
         }
+
+        // projectile hitbox
+        if (this.projectileActive === true) {
+            ctext.fillStyle = 'purple'
+            ctext.fillRect(this.projAttackHitbox.position.x, this.projAttackHitbox.position.y, this.projAttackHitbox.width, this.projAttackHitbox.height)
+        } 
+    }
+
+    startProjectile() {
+        playertwo.projAttackHitbox.position.x += this.position.x
+        playertwo.projAttackHitbox.position.y += this.position.y
     }
 
     update() {
         this.draw()
         this.position.x += this.velocity.vxl
         this.position.x += this.velocity.vxr
+
+        if (!this.projectilePlayerHold) {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
+        }
+
+        playertwo.projAttackHitbox.position.x += this.velocity.pvxr
+        playertwo.projAttackHitbox.position.x += this.velocity.pvxl
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
@@ -301,6 +327,14 @@ class spriteTWO {
             this.currentJumps = 0
         } else this.velocity.vy += grav
 
+        /* projectile moving across screen
+        if (this.projectileActive === true && this.position.x < playerone.position.x) {
+            this.velocity.pvxr = 10
+        }
+        if (this.projectileActive === true && this.position.x > playerone.position.x) {
+            this.velocity.pvxl = -10
+        } */
+ 
     }   
 
     punchAttack() {
@@ -336,6 +370,19 @@ class spriteTWO {
             this.kickCooldown = false
         },250)
     }
+
+    projectileAttack() {
+        this.projectileActive = true
+        this.projectilePlayerHold = true
+
+        setTimeout(() => {
+            this.projectileActive = false
+        }, 1200)
+
+        setTimeout(() => {
+            this.projectilePlayerHold = false
+        }, 300)
+    }
 }
 
 const playerone = new spriteONE({
@@ -365,6 +412,8 @@ const playertwo = new spriteTWO({
         vxl:0,
         vxr:0,
         vy:0,
+        pvxl:0,
+        pvxr:0,
     },
 })
 playertwo.draw()
@@ -534,6 +583,8 @@ let slideBoostCompletedTwo = false
 
 let punchPressTime = 0
 let secondPunchPressTime = 0
+let punchPressTimeTwo = 0
+let secondPunchPressTimeTwo = 0
 let projectileTimeLimit = 500
 
 window.addEventListener('keydown', function(p){
@@ -650,6 +701,22 @@ window.addEventListener('keydown', function(p){
                 playertwo.velocity.vxl = -2.5
             }
         }
+            // projectile combo
+        else if (pressedKeys.has('KeyL')) {
+            const projTimeElapsed = Date.now() - punchPressTimeTwo
+            if (punchPressTimeTwo > 0 && projTimeElapsed <= projectileTimeLimit) {
+                secondPunchPressTimeTwo = Date.now()
+                console.log('setup went off')
+            }
+        }
+        else if (pressedKeys.has('Semicolon')) {
+            const secondProjTimeElapsed = Date.now() - secondPunchPressTimeTwo
+            if (secondPunchPressTimeTwo > 0 && secondProjTimeElapsed <= projectileTimeLimit) {
+                console.log('projectile went off')
+                playertwo.startProjectile()
+                playertwo.projectileAttack()
+            }
+        }
         // SINGLE KEY CONTROLS
         else if (p.code === 'ArrowRight') {
             playertwo.velocity.vxr = 5
@@ -671,6 +738,7 @@ window.addEventListener('keydown', function(p){
         else if (p.code === 'Comma') {
             playertwo.punchAttack()
             console.log(playertwo.punchActive)
+            punchPressTimeTwo = Date.now()
         }
         else if (p.code === 'Period') {
             playertwo.kickAttack()

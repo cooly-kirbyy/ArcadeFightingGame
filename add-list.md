@@ -1,5 +1,5 @@
 - standing dashing||back-dashing w/ double press
-- projectile attack for both player1 and player2
+- projectile attack for both player1 (done) and player2
 - blocking with minimal damage 
 - block breaking
 - stunning || knockback when being attacked 
