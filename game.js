@@ -478,6 +478,9 @@ let slideTimerID
 let slideBoostCompletedOne = false
 let slideBoostCompletedTwo = false
 
+let punchPressTime = 0
+let projectileTimeLimit = 200
+
 window.addEventListener('keydown', function(p){
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
     pressedKeys.add(p.code)
@@ -514,7 +517,12 @@ window.addEventListener('keydown', function(p){
             if (slideBoostCompletedOne === true)
                 playerone.velocity.vxl = -2.5
         }
-
+        else if (pressedKeys.has('KeyR')) {
+            const timeElapsed = Date.now() - punchPressTime
+            if (punchPressTime > 0 && timeElapsed <= projectileTimeLimit) {
+                console.log('projectile went off')
+            }
+        }
             // SINGLE KEY CONTROLS
         else if (p.code === 'KeyD') {
         playerone.velocity.vxr = 5
@@ -537,6 +545,7 @@ window.addEventListener('keydown', function(p){
         else if (p.code === 'KeyF') {
             playerone.punchAttack()
             console.log(playerone.punchActive)
+            punchPressTime = Date.now()
         }
         else if (p.code === 'KeyG') {
             playerone.kickAttack()
