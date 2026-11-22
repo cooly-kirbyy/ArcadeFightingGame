@@ -116,11 +116,12 @@ class spriteONE {
             }
         }
 
+    
         // projectile attack hitbox 
         if (this.projectileActive === true) {
             ctext.fillStyle = 'purple'
             ctext.fillRect(this.projAttackHitbox.position.x, this.projAttackHitbox.position.y, this.projAttackHitbox.width, this.projAttackHitbox.height)
-        }
+        } 
     }
 
     update() {
@@ -153,7 +154,7 @@ class spriteONE {
         }
         if (this.projectileActive === true && this.position.x > playertwo.position.x) {
             this.velocity.pvxl = -10
-        }
+        } 
     }   
 
     punchAttack() {
@@ -327,6 +328,8 @@ const playerone = new spriteONE({
         vxl:0,
         vxr:0,
         vy:0,
+        pvxl:0,
+        pvxr:0,
     }
 })
 playerone.draw()
@@ -555,6 +558,7 @@ window.addEventListener('keydown', function(p){
             const projTimeElapsed = Date.now() - punchPressTime
             if (punchPressTime > 0 && projTimeElapsed <= projectileTimeLimit) {
                 secondPunchPressTime = Date.now()
+                console.log('setup went off')
             }
         }
         else if (pressedKeys.has('KeyT')) {
