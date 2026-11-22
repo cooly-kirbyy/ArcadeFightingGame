@@ -162,9 +162,15 @@ class spriteONE {
         // projectile moving across screen
         if (this.projectileActive === true && this.position.x < playertwo.position.x) {
             this.velocity.pvxr = 15
+            if (this.projectileActive === false && this.position.x > playertwo.position.x) {
+                this.velocity.pvxr = 0
+            }
         }
         if (this.projectileActive === true && this.position.x > playertwo.position.x) {
             this.velocity.pvxl = -15
+            if (this.projectileActive === false) {
+                this.velocity.pvxr = 0
+            }
         } 
     }   
 
@@ -212,6 +218,8 @@ class spriteONE {
 
         setTimeout(() => {
             this.projectilePlayerHold = false
+            console.log(playerone.velocity.pvxr)
+            console.log(playerone.velocity.pvxl)
         }, 300)
     }
 }
