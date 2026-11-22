@@ -66,6 +66,7 @@ class spriteONE {
         this.kickAlreadyHit = false
 
         this.projectileActive = false
+        this.projectilePlayerHold = false
 
         this.punchAttackHitBox = {
             position: this.position,
@@ -152,7 +153,8 @@ class spriteONE {
             this.velocity.vy = 0 
             this.currentJumps = 0
         } else this.velocity.vy += grav
-        
+
+
         // projectile moving across screen
         if (this.projectileActive === true && this.position.x < playertwo.position.x) {
             this.velocity.pvxr = 15
@@ -198,10 +200,15 @@ class spriteONE {
 
     projectileAttack() {
         this.projectileActive = true
+        this.projectilePlayerHold = true
 
         setTimeout(() => {
             this.projectileActive = false
         }, 1200)
+
+        setTimeout(() => {
+            this.projectilePlayerHold = false
+        }, 300)
     }
 }
 
@@ -578,10 +585,10 @@ window.addEventListener('keydown', function(p){
             }
         }
             // SINGLE KEY CONTROLS
-        else if (p.code === 'KeyD') {
+        else if (p.code === 'KeyD' && !playerone.projectilePlayerHold) {
         playerone.velocity.vxr = 5
         }
-        else if (p.code === 'KeyA') {
+        else if (p.code === 'KeyA' && !playerone.projectilePlayerHold) {
         playerone.velocity.vxl = -5
         }
         else if (p.code === 'KeyW') {
