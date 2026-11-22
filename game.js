@@ -137,6 +137,7 @@ class spriteONE {
         this.position.y += this.velocity.vy
 
         playerone.projAttackHitbox.position.x += this.velocity.pvxr
+        playerone.projAttackHitbox.position.x += this.velocity.pvxl
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
@@ -154,10 +155,10 @@ class spriteONE {
         
         // projectile moving across screen
         if (this.projectileActive === true && this.position.x < playertwo.position.x) {
-            this.velocity.pvxr = 10
+            this.velocity.pvxr = 15
         }
         if (this.projectileActive === true && this.position.x > playertwo.position.x) {
-            this.velocity.pvxl = -10
+            this.velocity.pvxl = -15
         } 
     }   
 
@@ -200,7 +201,7 @@ class spriteONE {
 
         setTimeout(() => {
             this.projectileActive = false
-        }, 1000)
+        }, 1200)
     }
 }
 
