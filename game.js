@@ -333,7 +333,7 @@ class spriteTWO {
         if (this.projectileActive === true && this.position.x < playerone.position.x) {
             this.velocity.pvxr = 15
         }
-        if (this.projectileActive === true && this.position.x > playerone.position.x) {
+        else if (this.projectileActive === true && this.position.x > playerone.position.x) {
             this.velocity.pvxl = -15
         } 
     }   
