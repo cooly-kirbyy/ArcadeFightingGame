@@ -479,6 +479,7 @@ let slideBoostCompletedOne = false
 let slideBoostCompletedTwo = false
 
 let punchPressTime = 0
+let secondPunchPressTime = 0
 let projectileTimeLimit = 200
 
 window.addEventListener('keydown', function(p){
@@ -516,10 +517,17 @@ window.addEventListener('keydown', function(p){
 
             if (slideBoostCompletedOne === true)
                 playerone.velocity.vxl = -2.5
-        }
+        } 
+                //for projectile
         else if (pressedKeys.has('KeyR')) {
-            const timeElapsed = Date.now() - punchPressTime
-            if (punchPressTime > 0 && timeElapsed <= projectileTimeLimit) {
+            const projTimeElapsed = Date.now() - punchPressTime
+            if (punchPressTime > 0 && projTimeElapsed <= projectileTimeLimit) {
+                secondPunchPressTime = Date.now()
+            }
+        }
+        else if (pressedKeys.has('KeyT')) {
+            const secondProjTimeElapsed = Date.now() - secondPunchPressTime
+            if (secondPunchPressTime > 0 && secondProjTimeElapsed <= projectileTimeLimit) {
                 console.log('projectile went off')
             }
         }
