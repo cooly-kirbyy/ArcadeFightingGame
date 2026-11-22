@@ -82,7 +82,7 @@ class spriteONE {
         }
 
         this.projAttackHitbox = {
-            position: {x: this.position.x, y: this.position.y},
+            position: {x: this.position.x, y:this.position.y},
             width: 60,
             height: 60,
         }
@@ -131,11 +131,8 @@ class spriteONE {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
 
-        this.projAttackHitbox.position.x += this.velocity.pvxr
-
-
-        // this.projAttackHitbox.position.x = this.position += this.velocity.pvxl
-        // this.projAttackHitbox.position.x = this.position += this.velocity.pvxr
+        playerone.projAttackHitbox.position.x = this.position.x
+        playerone.projAttackHitbox.position.y = this.position.y
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
@@ -570,6 +567,8 @@ window.addEventListener('keydown', function(p){
             if (secondPunchPressTime > 0 && secondProjTimeElapsed <= projectileTimeLimit) {
                 console.log('projectile went off')
                 playerone.projectileAttack()
+                console.log(playerone.projAttackHitbox.position.x)
+                console.log(playerone.velocity.pvxr)
             }
         }
             // SINGLE KEY CONTROLS

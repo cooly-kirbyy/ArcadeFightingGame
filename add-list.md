@@ -4,3 +4,6 @@
 - block breaking
 - stunning || knockback when being attacked 
 - grabbing => throwing 
+- controls on the side or the bottom of the canvas 
+- game over audio when timer reachers zero ?
+- character sprites 
