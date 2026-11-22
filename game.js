@@ -123,6 +123,11 @@ class spriteONE {
             ctext.fillRect(this.projAttackHitbox.position.x, this.projAttackHitbox.position.y, this.projAttackHitbox.width, this.projAttackHitbox.height)
         } 
     }
+
+    startProjectile() {
+        playerone.projAttackHitbox.position.x = this.position.x
+        playerone.projAttackHitbox.position.y = this.position.y
+    }
     
     update() {
         this.draw()
@@ -131,8 +136,7 @@ class spriteONE {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
 
-        playerone.projAttackHitbox.position.x = this.position.x
-        playerone.projAttackHitbox.position.y = this.position.y
+        playerone.projAttackHitbox.position.x += this.velocity.pvxr
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
@@ -566,6 +570,7 @@ window.addEventListener('keydown', function(p){
             const secondProjTimeElapsed = Date.now() - secondPunchPressTime
             if (secondPunchPressTime > 0 && secondProjTimeElapsed <= projectileTimeLimit) {
                 console.log('projectile went off')
+                playerone.startProjectile()
                 playerone.projectileAttack()
                 console.log(playerone.projAttackHitbox.position.x)
                 console.log(playerone.velocity.pvxr)
