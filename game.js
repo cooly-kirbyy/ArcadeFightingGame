@@ -252,12 +252,6 @@ class spriteTWO {
             widthl: -120,
             height: 50,
         }
-
-        this.projAttackHitbox = {
-            position: {x: this.position.x, y: this.position.y},
-            width: 60,
-            height: 60
-        }
     }
 
     draw() {
@@ -288,16 +282,6 @@ class spriteTWO {
             }
         }
 
-        // projectile hitbox
-        if (this.projectileActive === true) {
-            ctext.fillStyle = 'purple'
-            ctext.fillRect(this.projAttackHitbox.position.x, this.projAttackHitbox.position.y, this.projAttackHitbox.width, this.projAttackHitbox.height)
-        } 
-    }
-
-    startProjectile() {
-        playertwo.projAttackHitbox.position.x += this.position.x
-        playertwo.projAttackHitbox.position.y += this.position.y
     }
 
     update() {
@@ -305,13 +289,8 @@ class spriteTWO {
         this.position.x += this.velocity.vxl
         this.position.x += this.velocity.vxr
 
-        if (!this.projectilePlayerHold) {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
-        }
-
-        playertwo.projAttackHitbox.position.x += this.velocity.pvxr
-        playertwo.projAttackHitbox.position.x += this.velocity.pvxl
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
@@ -326,15 +305,6 @@ class spriteTWO {
             this.velocity.vy = 0
             this.currentJumps = 0
         } else this.velocity.vy += grav
-
-        /* projectile moving across screen
-        if (this.projectileActive === true && this.position.x < playerone.position.x) {
-            this.velocity.pvxr = 10
-        }
-        if (this.projectileActive === true && this.position.x > playerone.position.x) {
-            this.velocity.pvxl = -10
-        } */
- 
     }   
 
     punchAttack() {
@@ -370,19 +340,6 @@ class spriteTWO {
             this.kickCooldown = false
         },250)
     }
-
-    projectileAttack() {
-        this.projectileActive = true
-        this.projectilePlayerHold = true
-
-        setTimeout(() => {
-            this.projectileActive = false
-        }, 1200)
-
-        setTimeout(() => {
-            this.projectilePlayerHold = false
-        }, 300)
-    }
 }
 
 const playerone = new spriteONE({
@@ -412,8 +369,6 @@ const playertwo = new spriteTWO({
         vxl:0,
         vxr:0,
         vy:0,
-        pvxl:0,
-        pvxr:0,
     },
 })
 playertwo.draw()
@@ -713,8 +668,6 @@ window.addEventListener('keydown', function(p){
             const secondProjTimeElapsed = Date.now() - secondPunchPressTimeTwo
             if (secondPunchPressTimeTwo > 0 && secondProjTimeElapsed <= projectileTimeLimit) {
                 console.log('projectile went off')
-                playertwo.startProjectile()
-                playertwo.projectileAttack()
             }
         }
         // SINGLE KEY CONTROLS
