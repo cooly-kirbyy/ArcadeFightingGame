@@ -310,8 +310,8 @@ class spriteTWO {
         this.position.y += this.velocity.vy
         }
 
-        playerone.projAttackHitbox.position.x += this.velocity.pvxr
-        playerone.projAttackHitbox.position.x += this.velocity.pvxl
+        playertwo.projAttackHitbox.position.x += this.velocity.pvxr
+        playertwo.projAttackHitbox.position.x += this.velocity.pvxl
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
