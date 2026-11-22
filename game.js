@@ -134,8 +134,11 @@ class spriteONE {
         this.draw()
         this.position.x += this.velocity.vxl
         this.position.x += this.velocity.vxr
+
+        if (!this.projectilePlayerHold) {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
+        }
 
         playerone.projAttackHitbox.position.x += this.velocity.pvxr
         playerone.projAttackHitbox.position.x += this.velocity.pvxl
@@ -152,7 +155,10 @@ class spriteONE {
         if (this.position.y + this.height + this.velocity.vy >= canvas.height) {
             this.velocity.vy = 0 
             this.currentJumps = 0
-        } else this.velocity.vy += grav
+        } else if (!this.projectilePlayerHold) {
+            this.velocity.vy += grav
+        } 
+
 
 
         // projectile moving across screen
