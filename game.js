@@ -504,8 +504,27 @@ function animateFrames() {
             const health = healthCalc()
             console.log(health)
         }
-
-
+        // PROJECTILE 
+    if (playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width <= playertwo.position.x + playertwo.width
+        && playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width >= playertwo.position.x
+        && playerone.projAttackHitbox.position.y + playerone.projAttackHitbox.height >= playertwo.position.y
+        && playerone.projAttackHitbox.position.y <= playertwo.position.y + playertwo.height
+        && playerone.projectileActive && timer > 0 && p1HealthPercent > 0) { // LEFT FACING
+            playerone.projectileActive = false
+            p2damage += 14
+            const health = healthCalc()
+            console.log(health)
+        }
+    if (playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width >= playertwo.position.x 
+        && playerone.projAttackHitbox.position.x <= playertwo.position.x + playertwo.width
+        && playerone.projAttackHitbox.position.y + playerone.projAttackHitbox.height >= playertwo.position.y
+        && playerone.projAttackHitbox.position.y <= playertwo.position.y + playertwo.height
+        && playerone.projectileActive && timer > 0 && p1HealthPercent > 0) { // RIGHT FACING
+            playerone.projectileActive = false
+            p2damage += 14
+            const health = healthCalc()
+            console.log(health)
+        }
 
     // PLAYER TWO COLLISION LOGIC
         // PUNCHING
