@@ -82,9 +82,9 @@ class spriteONE {
         }
 
         this.projAttackHitbox = {
-            position: {x: 0, y: 0},
-            width: 50,
-            height: 50,
+            position: {x: this.position.x, y: this.position.y},
+            width: 60,
+            height: 60,
         }
     }
 
@@ -123,7 +123,7 @@ class spriteONE {
             ctext.fillRect(this.projAttackHitbox.position.x, this.projAttackHitbox.position.y, this.projAttackHitbox.width, this.projAttackHitbox.height)
         } 
     }
-
+    
     update() {
         this.draw()
         this.position.x += this.velocity.vxl
@@ -131,8 +131,11 @@ class spriteONE {
         this.position.y += this.velocity.vy
         this.position.y += this.velocity.vy
 
-        this.projAttackHitbox.position.x = this.position += this.velocity.pvxl
-        this.projAttackHitbox.position.x = this.position += this.velocity.pvxr
+        this.projAttackHitbox.position.x += this.velocity.pvxr
+
+
+        // this.projAttackHitbox.position.x = this.position += this.velocity.pvxl
+        // this.projAttackHitbox.position.x = this.position += this.velocity.pvxr
 
         /*preventing player from running off canvas */
         if (this.position.x <= 0) {
@@ -199,6 +202,8 @@ class spriteONE {
         }, 1000)
     }
 }
+
+
 
 class spriteTWO {
     constructor({position, velocity, currentJumps = 0, jumpMax = 2}) {
@@ -334,7 +339,6 @@ const playerone = new spriteONE({
 })
 playerone.draw()
 console.log(playerone)
-
 
 const playertwo = new spriteTWO({
     
@@ -515,7 +519,7 @@ let slideBoostCompletedTwo = false
 
 let punchPressTime = 0
 let secondPunchPressTime = 0
-let projectileTimeLimit = 200
+let projectileTimeLimit = 500
 
 window.addEventListener('keydown', function(p){
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
