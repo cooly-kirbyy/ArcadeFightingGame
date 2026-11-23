@@ -1,12 +1,16 @@
 const canvas = document.getElementById('game-screen');
-const winSound = new Audio('assets/audio/win-sound-effect.mp3')
 const ctext = canvas.getContext('2d')
+
+const winSound = new Audio('assets/audio/win-sound-effect.mp3')
+const tieSound = new Audio('assets/audio/tie-sound-effect.mp3')
+
 const p1HealthBar = document.getElementById('p1health')
 const p2HealthBar = document.getElementById('p2health')
 const playerOneWin = document.getElementById('playertwoloss')
 const playerTwoWin = document.getElementById('playeroneloss')
 const playerTie = document.getElementById('playertie')
 const tryAgainElement = document.getElementById('restart')
+
 const healthMax = 100
 const grav = 0.4
 
@@ -33,7 +37,7 @@ function timerRun() {
         if (p1HealthPercent === p2HealthPercent) {
             playerTie.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
-            // add a more losing type sound here
+            tieSound.play()
         }
 
         else if (p1HealthPercent > p2HealthPercent) {
