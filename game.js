@@ -213,8 +213,6 @@ class spriteONE {
 
         setTimeout(() => {
             this.projectilePlayerHold = false
-            console.log(playerone.velocity.pvxr)
-            console.log(playerone.velocity.pvxl)
         }, 300)
     }
 }
@@ -513,21 +511,25 @@ function animateFrames() {
         && playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width >= playertwo.position.x
         && playerone.projAttackHitbox.position.y + playerone.projAttackHitbox.height >= playertwo.position.y
         && playerone.projAttackHitbox.position.y <= playertwo.position.y + playertwo.height
-        && playerone.projectileActive && timer > 0 && p1HealthPercent > 0) { // LEFT FACING
+        && playerone.projectileActive && p1HealthPercent > 0) { // LEFT FACING
             playerone.projectileActive = false
-            p2damage += 14
-            const health = healthCalc()
-            console.log(health)
+            if (timer > 0) {
+                p2damage += 14
+                const health = healthCalc()
+                console.log(health)
+            }
         }
     if (playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width >= playertwo.position.x 
         && playerone.projAttackHitbox.position.x <= playertwo.position.x + playertwo.width
         && playerone.projAttackHitbox.position.y + playerone.projAttackHitbox.height >= playertwo.position.y
         && playerone.projAttackHitbox.position.y <= playertwo.position.y + playertwo.height
-        && playerone.projectileActive && timer > 0 && p1HealthPercent > 0) { // RIGHT FACING
+        && playerone.projectileActive && p1HealthPercent > 0) { // RIGHT FACING
             playerone.projectileActive = false
-            p2damage += 14
-            const health = healthCalc()
-            console.log(health)
+            if (timer > 0) {
+                p2damage += 14
+                const health = healthCalc()
+                console.log(health)
+            }
         }
 
     // PLAYER TWO COLLISION LOGIC
@@ -577,7 +579,33 @@ function animateFrames() {
             const health = healthCalc()
             console.log(health)
         }
+        // PROJECTILE
+    if (playertwo.projAttackHitbox.position.x + playertwo.projAttackHitbox.width >= playerone.position.x
+        && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width
+        && playertwo.projAttackHitbox.position.y + playertwo.projAttackHitbox.height >= playerone.position.y
+        && playertwo.projAttackHitbox.position.y <= playerone.position.y + playerone.height
+        && playertwo.projectileActive && p2HealthPercent > 0 ) { // RIGHT FACING
+            playertwo.projectileActive = false
+            if (timer > 0) {
+                p1damage += 14
+                const health = healthCalc()
+                console.log(health)
+            }
+        }
+    if (playertwo.projAttackHitbox.position.x >= playerone.position.x 
+        && playertwo.projAttackHitbox.position.x + playertwo.projAttackHitbox.width <= playerone.position.x + playerone.width
+        && playertwo.projAttackHitbox.position.y + playertwo.projAttackHitbox.height >= playerone.position.y
+        && playertwo.projAttackHitbox.position.y <= playerone.position.y + playerone.height
+        && playertwo.projectileActive && p2HealthPercent > 0) { // LEFT FACING
+            playertwo.projectileActive = false
+            if (timer > 0) {
+                p1damage += 14
+                const health = healthCalc()
+                console.log(health)
+            }
+        }
 }
+
 animateFrames()
 
 
