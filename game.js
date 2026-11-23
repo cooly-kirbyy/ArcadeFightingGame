@@ -29,10 +29,11 @@ function timerRun() {
 
     if (timer <= 0) {
     gameisover = true
-    
+
         if (p1HealthPercent === p2HealthPercent) {
             playerTie.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
+            // add a more losing type sound here
         }
 
         else if (p1HealthPercent > p2HealthPercent) {
@@ -434,6 +435,7 @@ console.log(playertwo)
 
 // damage calculation
 function healthCalc() {
+    if (gameisover) return
     const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100     
     const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100
     p2HealthBar.style.width = `${p2HealthPercent}%`
@@ -443,17 +445,22 @@ function healthCalc() {
         console.log('player two lost')
         playerOneWin.classList.add('win-reveal')
         tryAgainElement.classList.add('win-reveal')
+        winSound.play()
 
         playerTwoHeight(60)
         playertwo.width = 150
+        gameisover = true
     }
     if (p1HealthPercent <= 0) {
         console.log('player one lost')
         playerTwoWin.classList.add('win-reveal')
         tryAgainElement.classList.add('win-reveal')
 
+        winSound.play()
+
         playerOneHeight(60)
         playerone.width = 150
+        gameisover = true
     }
     return {p2HealthPercent, p1HealthPercent}
 }
