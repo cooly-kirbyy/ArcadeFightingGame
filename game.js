@@ -162,16 +162,11 @@ class spriteONE {
         // projectile moving across screen
         if (this.projectileActive === true && this.position.x < playertwo.position.x) {
             this.velocity.pvxr = 15
-            if (this.projectileActive === false && this.position.x > playertwo.position.x) {
-                this.velocity.pvxr = 0
-            }
-        }
+        } else {this.velocity.pvxr = 0}
+
         if (this.projectileActive === true && this.position.x > playertwo.position.x) {
             this.velocity.pvxl = -15
-            if (this.projectileActive === false) {
-                this.velocity.pvxr = 0
-            }
-        } 
+        } else {this.velocity.pvxl = 0}
     }   
 
     punchAttack() {
@@ -340,10 +335,11 @@ class spriteTWO {
         // projectile moving across 
         if (this.projectileActive === true && this.position.x < playerone.position.x) {
             this.velocity.pvxr = 15
-        }
-        else if (this.projectileActive === true && this.position.x > playerone.position.x) {
+        } else {this.velocity.pvxr = 0}
+
+        if (this.projectileActive === true && this.position.x > playerone.position.x) {
             this.velocity.pvxl = -15
-        } 
+        } else {this.velocity.pvxl = 0}
     }   
 
     punchAttack() {
