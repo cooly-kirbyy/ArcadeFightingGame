@@ -1,4 +1,5 @@
 const canvas = document.getElementById('game-screen');
+const winSound = new Audio('assets/audio/win-sound-effect.mp3')
 const ctext = canvas.getContext('2d')
 const p1HealthBar = document.getElementById('p1health')
 const p2HealthBar = document.getElementById('p2health')
@@ -33,11 +34,17 @@ function timerRun() {
             console.log('player one has won')
             playerOneWin.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
+            winSound.loop = false
+            console.log(winSound.loop)
+            winSound.play()
         }
         else if (p1HealthPercent < p2HealthPercent) {
             console.log('player two has won')
             playerTwoWin.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
+            winSound.loop = false
+            console.log(winSound.loop)
+            winSound.play()
         }
     } 
 

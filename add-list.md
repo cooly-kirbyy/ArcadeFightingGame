@@ -3,7 +3,6 @@
 - block breaking
 - stunning || knockback when being attacked 
 - grabbing => throwing 
--           controls on the side or the bottom of the canvas 
 - reverse the combo for the projectile
 - game over audio when timer reachers zero ?
 - character sprites 
