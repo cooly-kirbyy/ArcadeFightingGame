@@ -4,5 +4,4 @@
 - stunning || knockback when being attacked 
 - grabbing => throwing 
 - reverse the combo for the projectile
-- game over audio when timer reachers zero ?
 - character sprites 

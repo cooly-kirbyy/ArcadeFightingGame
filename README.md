@@ -11,16 +11,18 @@ Player One:
     W: Jump (You can double jump.)   
     A: Move Left   
     D: Move Right   
-    S: Crouch    
+    S: Crouch (Going left or right gives you a quick boost!)
     F: Punch
     G: Kick
+    F => R => T: Projectile Attack 
     
 Player Two:
     Up Arrow Key: Jump (You can also double jump.)   
     Left Arrow Key: Move Left    
     Right Arrow Key: Move Right   
-    Down Arrow Key: Crouch    
+    Down Arrow Key: Crouch (Going left or right gives you a quick boost!) 
     Comma: Punch
     Period: Kick
+    Comma => L => Semicolon: Projectile Attack 
 
-![picture of the game running in browser](assets/for-readme/updated-proof2.png)
+![picture of the game running in browser](assets/for-readme/updated-proof3.png)
