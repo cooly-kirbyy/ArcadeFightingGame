@@ -15,16 +15,21 @@ let p2damage = 0
 
 let timer = 15
 let timerID
+
+let gameisover = false
 function timerRun() {
+    if (gameisover) return
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
 
-   timerID = setTimeout(timerRun, 1000)
+    timerID = setTimeout(timerRun, 1000)
     if (timer > 0) {
         timer--
         document.getElementById('timer').textContent = `${timer}`
     }
 
     if (timer <= 0) {
+    gameisover = true
+    
         if (p1HealthPercent === p2HealthPercent) {
             playerTie.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
@@ -34,19 +39,16 @@ function timerRun() {
             console.log('player one has won')
             playerOneWin.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
-            winSound.loop = false
-            console.log(winSound.loop)
             winSound.play()
         }
         else if (p1HealthPercent < p2HealthPercent) {
             console.log('player two has won')
             playerTwoWin.classList.add('win-reveal')
             tryAgainElement.classList.add('win-reveal')
-            winSound.loop = false
-            console.log(winSound.loop)
             winSound.play()
         }
     } 
+
 
     if (p1HealthPercent <= 0 || p2HealthPercent <= 0) {
         clearTimeout(timerID)
