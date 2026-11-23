@@ -4,6 +4,20 @@ canvas {                /*centering canvas*/
     z-index: 1;
 }
 
+.p1controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 13px;
+}
+
+.p2controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 13px;
+}
+
 .game-container {
     position: relative;
     z-index: 5;
