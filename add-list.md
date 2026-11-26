@@ -5,3 +5,6 @@
 - grabbing => throwing 
 - reverse the combo for the projectile
 - character sprites 
+- menu screen to direct to main game 
+- scrolling pause screen
+- add manual end timer button 
