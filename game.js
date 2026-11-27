@@ -439,7 +439,6 @@ console.log(playertwo)
 
 // damage calculation
 function healthCalc() {
-   // if (gameisover) return
     const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100     
     const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100
     p2HealthBar.style.width = `${p2HealthPercent}%`
@@ -466,7 +465,9 @@ function healthCalc() {
         playerone.width = 150
         gameisover = true
     }
+    if (gameisover) return {p2HealthPercent, p1HealthPercent}
     return {p2HealthPercent, p1HealthPercent}
+    
 }
 healthCalc()
 
@@ -658,6 +659,9 @@ let secondPunchPressTime = 0
 let punchPressTimeTwo = 0
 let secondPunchPressTimeTwo = 0
 let projectileTimeLimit = 500
+
+let playerOneDead = false
+let playerTwoDead = false
 
 window.addEventListener('keydown', function(p){
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
