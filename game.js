@@ -501,7 +501,8 @@ function blockCalc() {
 
     if (p1BlockPercent <= 0) {
         playerone.blockActive = false
-        console.log(playerone.blockActive)
+        console.log('block active:',playerone.blockActive)
+        p1BlockBar.style.width = `0%`
     }
 
     return {p1BlockPercent, p2BlockPercent}
@@ -516,7 +517,7 @@ function animateFrames() {
     playertwo.update()
     window.requestAnimationFrame(animateFrames)
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
-    const {p1BlockPercent, p2BlockPercent} = blockCalc()
+    blockCalc()
 
     // PLAYER ONE COLLISION LOGIC 
         // PUNCHING 
@@ -621,6 +622,9 @@ function animateFrames() {
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
     }
     if (playertwo.punchAttackHitBox.position.x + playertwo.punchAttackHitBox.widthr >= playerone.position.x
         && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width 
@@ -632,6 +636,9 @@ function animateFrames() {
             p1damage += 6.25
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
     }
         // KICKING
     if (playertwo.kickAttackHitBox.position.x >= playerone.position.x 
@@ -644,6 +651,9 @@ function animateFrames() {
             p1damage += 9
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
     }
     if (playertwo.kickAttackHitBox.position.x + playertwo.kickAttackHitBox.widthr >= playerone.position.x
         && playertwo.position.x + playertwo.width <= playerone.position.x + playerone.width 
@@ -655,6 +665,9 @@ function animateFrames() {
             p1damage += 9
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
         }
         // PROJECTILE
     if (playertwo.projAttackHitbox.position.x + playertwo.projAttackHitbox.width >= playerone.position.x
@@ -667,6 +680,9 @@ function animateFrames() {
                 p1damage += 14
                 const health = healthCalc()
                 console.log(health)
+
+                const blockMeter = blockCalc()
+                console.log(blockMeter)
             }
         }
     if (playertwo.projAttackHitbox.position.x >= playerone.position.x 
@@ -679,6 +695,9 @@ function animateFrames() {
                 p1damage += 14
                 const health = healthCalc()
                 console.log(health)
+
+                const blockMeter = blockCalc()
+                console.log(blockMeter)
             }
         }
 }
