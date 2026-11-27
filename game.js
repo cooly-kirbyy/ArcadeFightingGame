@@ -439,7 +439,7 @@ console.log(playertwo)
 
 // damage calculation
 function healthCalc() {
-    if (gameisover) return
+   // if (gameisover) return
     const p2HealthPercent = ((healthMax - p2damage) / healthMax) * 100     
     const p1HealthPercent = ((healthMax - p1damage) / healthMax) * 100
     p2HealthBar.style.width = `${p2HealthPercent}%`
