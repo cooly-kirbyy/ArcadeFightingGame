@@ -6,12 +6,15 @@ const tieSound = new Audio('assets/audio/tie-sound-effect.mp3')
 
 const p1HealthBar = document.getElementById('p1health')
 const p2HealthBar = document.getElementById('p2health')
+const p1BlockBar = document.getElementById('p1block')
+const p2BlockBar = document.getElementById('p2block')
 const playerOneWin = document.getElementById('playertwoloss')
 const playerTwoWin = document.getElementById('playeroneloss')
 const playerTie = document.getElementById('playertie')
 const tryAgainElement = document.getElementById('restart')
 
 const healthMax = 100
+const blockMax = 36
 const grav = 0.4
 
 let p1damage = 0
@@ -490,6 +493,21 @@ function healthCalc() {
 }
 healthCalc()
 
+function blockCalc() {
+    const p1BlockPercent = ((blockMax - p1damage) / blockMax) * 100
+    const p2BlockPercent = ((blockMax - p2damage) / blockMax) * 100
+    p1BlockBar.style.width = `${p1BlockPercent}%`
+    p2BlockBar.style.width = `${p2BlockPercent}%`
+
+    if (p1BlockPercent <= 0) {
+        playerone.blockActive = false
+        console.log(playerone.blockActive)
+    }
+
+    return {p1BlockPercent, p2BlockPercent}
+}
+blockCalc()
+
 // collision 
 function animateFrames() {
     ctext.fillStyle = 'white'
@@ -498,6 +516,7 @@ function animateFrames() {
     playertwo.update()
     window.requestAnimationFrame(animateFrames)
     const {p2HealthPercent, p1HealthPercent} = healthCalc()
+    const {p1BlockPercent, p2BlockPercent} = blockCalc()
 
     // PLAYER ONE COLLISION LOGIC 
         // PUNCHING 
@@ -511,6 +530,9 @@ function animateFrames() {
             p2damage += 6.25
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
         }
     if (playerone.punchAttackHitBox.position.x + playerone.punchAttackHitBox.widthl <= playertwo.position.x + playertwo.width
         && playerone.punchAttackHitBox.position.x + playerone.punchAttackHitBox.widthl >= playertwo.position.x
@@ -522,6 +544,9 @@ function animateFrames() {
             p2damage += 6
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
         }
         // KICKING
     if (playerone.kickAttackHitBox.position.x + playerone.kickAttackHitBox.widthr >= playertwo.position.x 
@@ -534,6 +559,9 @@ function animateFrames() {
             p2damage += 9
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
         }
     if (playerone.kickAttackHitBox.position.x + playerone.kickAttackHitBox.widthl <= playertwo.position.x + playertwo.width
         && playerone.kickAttackHitBox.position.x + playerone.kickAttackHitBox.widthl >= playertwo.position.x
@@ -545,6 +573,9 @@ function animateFrames() {
             p2damage += 9
             const health = healthCalc()
             console.log(health)
+
+            const blockMeter = blockCalc()
+            console.log(blockMeter)
         }
         // PROJECTILE 
     if (playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width <= playertwo.position.x + playertwo.width
@@ -557,6 +588,9 @@ function animateFrames() {
                 p2damage += 14
                 const health = healthCalc()
                 console.log(health)
+
+                const blockMeter = blockCalc()
+                console.log(blockMeter)
             }
         }
     if (playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width >= playertwo.position.x 
@@ -569,6 +603,9 @@ function animateFrames() {
                 p2damage += 14
                 const health = healthCalc()
                 console.log(health)
+
+                const blockMeter = blockCalc()
+                console.log(blockMeter)
             }
         }
 
