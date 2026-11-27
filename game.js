@@ -82,6 +82,8 @@ class spriteONE {
         this.projectileActive = false
         this.projectilePlayerHold = false
 
+        this.blockActive = false
+
         this.punchAttackHitBox = {
             position: this.position,
             widthr: 155,
@@ -100,6 +102,12 @@ class spriteONE {
             position: {x: this.position.x, y:this.position.y},
             width: 60,
             height: 60,
+        }
+
+        this.blockingHitBox = {
+            position: this.position,
+            width: 75,
+            height: 70,
         }
     }
 
@@ -137,6 +145,12 @@ class spriteONE {
             ctext.fillStyle = 'purple'
             ctext.fillRect(this.projAttackHitbox.position.x, this.projAttackHitbox.position.y, this.projAttackHitbox.width, this.projAttackHitbox.height)
         } 
+
+        // blocking hitbox 
+        if (this.blockActive === true) {
+        ctext.fillStyle = 'cornflowerblue'
+        ctext.fillRect(this.blockingHitBox.position.x, this.blockingHitBox.position.y, this.blockingHitBox.width,this.blockingHitBox.height)
+        }
     }
 
     startProjectile() {
@@ -228,6 +242,11 @@ class spriteONE {
         setTimeout(() => {
             this.projectilePlayerHold = false
         }, 300)
+    }
+
+    block() {
+
+        this.blockActive = true
     }
 }
 
@@ -471,7 +490,7 @@ function healthCalc() {
 }
 healthCalc()
 
-
+// collision 
 function animateFrames() {
     ctext.fillStyle = 'white'
     ctext.fillRect(0,0,canvas.width,canvas.height)
@@ -630,7 +649,7 @@ function animateFrames() {
 animateFrames()
 
 
-/*allowing crouch to work in the air */
+// allowing crouch in air and setting it from bottom
 
 function playerOneHeight(updatedHeight) {
     const playeroneBottom = playerone.position.y + playerone.height
@@ -647,7 +666,7 @@ function playerTwoHeight(updatedHeight) {
 }
 
 
-/* CONTROLS */
+// CONTROLS
 
 const pressedKeys = new Set()
 let slideTimerID
@@ -717,9 +736,11 @@ window.addEventListener('keydown', function(p){
         }
             // SINGLE KEY CONTROLS
         else if (p.code === 'KeyD' && !playerone.projectilePlayerHold) {
+        playerone.blockActive = true
         playerone.velocity.vxr = 5
         }
         else if (p.code === 'KeyA' && !playerone.projectilePlayerHold) {
+        playerone.blockActive = true
         playerone.velocity.vxl = -5
         }
         else if (p.code === 'KeyW') {
@@ -831,8 +852,10 @@ window.addEventListener('keyup', function(p){
     if (p.code === 'KeyD') {
         playerone.velocity.vxr = 0
         slideBoostCompletedOne = false
+        playerone.blockActive = false
     }
     else if (p.code === 'KeyA') {
+        playerone.blockActive = false
         playerone.velocity.vxl = 0
         slideBoostCompletedOne = false
     }
