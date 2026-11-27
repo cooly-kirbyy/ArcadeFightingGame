@@ -736,12 +736,16 @@ window.addEventListener('keydown', function(p){
         }
             // SINGLE KEY CONTROLS
         else if (p.code === 'KeyD' && !playerone.projectilePlayerHold) {
-        playerone.blockActive = true
-        playerone.velocity.vxr = 5
+            if (playerone.position.x > playertwo.position.x) {
+                playerone.blockActive = true
+            } 
+            playerone.velocity.vxr = 5
         }
         else if (p.code === 'KeyA' && !playerone.projectilePlayerHold) {
-        playerone.blockActive = true
-        playerone.velocity.vxl = -5
+            if (playerone.position.x < playertwo.position.x) {
+                playerone.blockActive = true   
+            }
+            playerone.velocity.vxl = -5
         }
         else if (p.code === 'KeyW') {
             console.log(playerone.currentJumps, playerone.jumpMax)
