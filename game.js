@@ -504,6 +504,10 @@ function blockCalc() {
         console.log('block active:',playerone.blockActive)
         p1BlockBar.style.width = `0%`
     }
+    if (p2BlockPercent <= 0) {
+        playertwo.blockActive = false
+        p2BlockBar.style.width = `0%`
+    }
 
     return {p1BlockPercent, p2BlockPercent}
 }
@@ -527,8 +531,8 @@ function animateFrames() {
         && playerone.punchAttackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.punchActive && timer > 0 && p1HealthPercent > 0
         && !playerone.punchAlreadyHit) { // RIGHT FACING
-            playerone.punchAlreadyHit = true
             p2damage += 6.25
+            playerone.punchAlreadyHit = true
             const health = healthCalc()
             console.log(health)
 
@@ -618,8 +622,12 @@ function animateFrames() {
         && playertwo.punchAttackHitBox.position.y <= playerone.position.y + playerone.height
         && playertwo.punchActive && timer > 0 && p2HealthPercent > 0
         && !playertwo.punchAlreadyHit) { // LEFT FACING
+
+            if (playerone.blockActive === true) {
+                p1damage += (6.25 * .3)
+            } else p1damage += 6.25
+
             playertwo.punchAlreadyHit = true
-            p1damage += 6.25
             const health = healthCalc()
             console.log(health)
 
