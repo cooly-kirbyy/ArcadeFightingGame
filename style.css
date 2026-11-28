@@ -139,6 +139,7 @@ canvas {                /*centering canvas*/
     width: 100%;
     z-index: 14;
     background-color: rgb(66, 100, 255);
+    right: 0px;
 }
 
 

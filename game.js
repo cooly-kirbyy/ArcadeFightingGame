@@ -634,7 +634,6 @@ function animateFrames() {
 
                 const health = healthCalc()
                 console.log(health)
-
             }
         }
 
