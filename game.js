@@ -20,8 +20,10 @@ const grav = 0.4
 let p1damage = 0
 let p2damage = 0
 
-let p1BlockHit = 0
-let p2BlockHit = 0
+let p1BlockRemaining = blockMax
+let p2BlockRemaining = blockMax
+let p1TimeOfDamage = 0
+let p2TimeOfDamage = 0
 
 let timer = 15
 let timerID
@@ -505,13 +507,12 @@ function healthCalc() {
 }
 healthCalc()
 
-let p1BlockRemaining = blockMax
-
+// blocking calculation
 function blockCalc() {
 
     const p1BlockPercent = Math.max(0, (p1BlockRemaining / blockMax) * 100)
     p1BlockBar.style.width = `${p1BlockPercent}%`
-    const p2BlockPercent = Math.max(0, ((blockMax - p2BlockHit) / blockMax) * 100)
+    const p2BlockPercent = Math.max(0, (p2BlockRemaining / blockMax) * 100)
     p2BlockBar.style.width = `${p2BlockPercent}%`
 
     if (p1BlockPercent <= 0) {
@@ -547,7 +548,8 @@ function animateFrames() {
         && !playerone.punchAlreadyHit) { // RIGHT FACING
             if (playertwo.blockActive === true) {
                 p2damage += (6 * .3)
-                p2BlockHit += 1
+                p2BlockRemaining = Math.max(0, p2BlockRemaining - 1)
+                p2TimeOfDamage = Date.now()
             } else p2damage += 6
 
             playerone.punchAlreadyHit = true
@@ -563,7 +565,8 @@ function animateFrames() {
         && !playerone.punchAlreadyHit) { // LEFT FACING 
             if (playertwo.blockActive === true) {
                 p2damage += (6 * .3)
-                p2BlockHit += 1
+                p2BlockRemaining = Math.max(0, p2BlockRemaining - 1)
+                p2TimeOfDamage = Date.now()
             } else p2damage += 6
 
             playerone.punchAlreadyHit = true
@@ -580,7 +583,8 @@ function animateFrames() {
         && !playerone.kickAlreadyHit) { // RIGHT FACING
             if (playertwo.blockActive === true) {
                 p2damage += (9 * .3)
-                p2BlockHit += 2
+                p2BlockRemaining = Math.max(0, p2BlockRemaining - 2)
+                p2TimeOfDamage = Date.now()
             } else p2damage += 9
 
             playerone.kickAlreadyHit = true
@@ -596,7 +600,8 @@ function animateFrames() {
         && !playerone.kickAlreadyHit) { // LEFT FACING
             if (playertwo.blockActive === true) {
                 p2damage += (9 * .3)
-                p2BlockHit += 2
+                p2BlockRemaining = Math.max(0, p2BlockRemaining - 2)
+                p2TimeOfDamage = Date.now()
             } else p2damage += 9
 
             playerone.kickAlreadyHit = true
@@ -614,7 +619,8 @@ function animateFrames() {
             if (timer > 0) {
                 if (playertwo.blockActive === true) {
                     p2damage += (14 * .3)
-                    p2BlockHit += 3
+                    p2BlockRemaining = Math.max(0, p2BlockRemaining - 3)
+                    p2TimeOfDamage = Date.now()
                 } else p2damage += 14
 
                 const health = healthCalc()
@@ -630,7 +636,8 @@ function animateFrames() {
             if (timer > 0) {
                 if (playertwo.blockActive === true) {
                     p2damage += (14 * .3)
-                    p2BlockHit += 3
+                    p2BlockRemaining = Math.max(0, p2BlockRemaining - 3)
+                    p2TimeOfDamage = Date.now()
                 } else p2damage += 14
 
                 const health = healthCalc()
@@ -649,8 +656,8 @@ function animateFrames() {
 
             if (playerone.blockActive === true) { 
                 p1damage += (6 * .3)
-                // p1BlockHit += 1
                 p1BlockRemaining = Math.max(0, p1BlockRemaining - 1)
+                p1TimeOfDamage = Date.now()
             } else p1damage += 6
 
             playertwo.punchAlreadyHit = true
@@ -668,7 +675,8 @@ function animateFrames() {
         && !playertwo.punchAlreadyHit) { // RIGHT FACING
             if (playerone.blockActive === true) {
                 p1damage += (6 * .3)
-                p1BlockHit += 1
+                p1BlockRemaining = Math.max(0, p1BlockRemaining - 1)
+                p1TimeOfDamage = Date.now()
             } else p1damage += 6
 
             playertwo.punchAlreadyHit = true 
@@ -687,7 +695,8 @@ function animateFrames() {
         && !playertwo.kickAlreadyHit) { // LEFT FACING
             if (playerone.blockActive === true) {
                 p1damage += (9 * .3)
-                p1BlockHit += 2
+                p1BlockRemaining = Math.max(0, p1BlockRemaining - 2)
+                p1TimeOfDamage = Date.now()
             } else p1damage += 9
 
             playertwo.kickAlreadyHit = true
@@ -705,7 +714,8 @@ function animateFrames() {
         && !playertwo.kickAlreadyHit) { // RIGHT FACING
             if (playerone.blockActive === true) {
                 p1damage += (9 * .3)
-                p1BlockHit += 2
+                p1BlockRemaining = Math.max(0, p1BlockRemaining - 2)
+                p1TimeOfDamage = Date.now()
             } else p1damage += 9
 
             playertwo.kickAlreadyHit = true
@@ -723,10 +733,10 @@ function animateFrames() {
         && playertwo.projectileActive && p2HealthPercent > 0 ) { // RIGHT FACING
             playertwo.projectileActive = false
             if (timer > 0) {
-
                 if (playerone.blockActive === true) {
                     p1damage += (14 * .3)
-                    p1BlockHit += 3
+                    p1BlockRemaining = Math.max(0, p1BlockRemaining - 3)
+                    p1TimeOfDamage = Date.now()
                 } else p1damage += 14
 
                 const health = healthCalc()
@@ -743,10 +753,10 @@ function animateFrames() {
         && playertwo.projectileActive && p2HealthPercent > 0) { // LEFT FACING
             playertwo.projectileActive = false
             if (timer > 0) {
-
                 if (playerone.blockActive === true) {
                     p1damage += (14 * .3)
-                    p1BlockHit += 3
+                    p1BlockRemaining = Math.max(0, p1BlockRemaining - 3)
+                    p1TimeOfDamage = Date.now()
                 } else p1damage += 14
 
                 const health = healthCalc()
@@ -760,20 +770,29 @@ function animateFrames() {
 
 animateFrames()
 
+// block regen
 setInterval(() => {
-    p1BlockRemaining = Math.min(blockMax, p1BlockRemaining + 0.1)
-    blockCalc()
+    const p1DamageTimePassed = Date.now() - p1TimeOfDamage
+    const p2DamageTimePassed = Date.now() - p2TimeOfDamage 
+
+    if (p1DamageTimePassed >= 2000) {
+        p1BlockRemaining = Math.min(blockMax, p1BlockRemaining + 0.1)
+        blockCalc()
+    }
+    if (p2DamageTimePassed >= 2000) {
+        p2BlockRemaining = Math.min(blockMax, p2BlockRemaining + 0.1)
+        blockCalc()
+    }
 }, 100)
 
-// allowing crouch in air and setting it from bottom
 
+// allowing crouch in air and setting it from bottom
 function playerOneHeight(updatedHeight) {
     const playeroneBottom = playerone.position.y + playerone.height
 
     playerone.height = updatedHeight
     playerone.position.y = playeroneBottom - updatedHeight
 }
-
 function playerTwoHeight(updatedHeight) {
     const playertwoBottom = playertwo.position.y + playertwo.height 
 
