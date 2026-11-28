@@ -505,13 +505,14 @@ function healthCalc() {
 }
 healthCalc()
 
+let p1BlockRemaining = blockMax
+
 function blockCalc() {
 
-    const p1BlockPercent = ((blockMax - p1BlockHit) / blockMax) * 100
+    const p1BlockPercent = Math.max(0, (p1BlockRemaining / blockMax) * 100)
     p1BlockBar.style.width = `${p1BlockPercent}%`
-    const p2BlockPercent = ((blockMax - p2BlockHit) / blockMax) * 100
+    const p2BlockPercent = Math.max(0, ((blockMax - p2BlockHit) / blockMax) * 100)
     p2BlockBar.style.width = `${p2BlockPercent}%`
-    
 
     if (p1BlockPercent <= 0) {
         playerone.blockActive = false
@@ -648,7 +649,8 @@ function animateFrames() {
 
             if (playerone.blockActive === true) { 
                 p1damage += (6 * .3)
-                p1BlockHit += 1
+                // p1BlockHit += 1
+                p1BlockRemaining = Math.max(0, p1BlockRemaining - 1)
             } else p1damage += 6
 
             playertwo.punchAlreadyHit = true
@@ -758,6 +760,10 @@ function animateFrames() {
 
 animateFrames()
 
+setInterval(() => {
+    p1BlockRemaining = Math.min(blockMax, p1BlockRemaining + 0.1)
+    blockCalc()
+}, 100)
 
 // allowing crouch in air and setting it from bottom
 
