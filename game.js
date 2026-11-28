@@ -544,7 +544,11 @@ function animateFrames() {
         && playerone.punchAttackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.punchActive && timer > 0 && p1HealthPercent > 0
         && !playerone.punchAlreadyHit) { // RIGHT FACING
-            p2damage += 6.25
+            if (playertwo.blockActive === true) {
+                p2damage += (6 * .3)
+                p2BlockHit += 1
+            } else p2damage += 6
+
             playerone.punchAlreadyHit = true
             const health = healthCalc()
             console.log(health)
@@ -556,8 +560,12 @@ function animateFrames() {
         && playerone.punchAttackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.punchActive && timer > 0 && p1HealthPercent > 0
         && !playerone.punchAlreadyHit) { // LEFT FACING 
+            if (playertwo.blockActive === true) {
+                p2damage += (6 * .3)
+                p2BlockHit += 1
+            } else p2damage += 6
+
             playerone.punchAlreadyHit = true
-            p2damage += 6
             const health = healthCalc()
             console.log(health)
 
@@ -569,8 +577,12 @@ function animateFrames() {
         && playerone.kickAttackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.kickActive && timer > 0 && p1HealthPercent > 0
         && !playerone.kickAlreadyHit) { // RIGHT FACING
+            if (playertwo.blockActive === true) {
+                p2damage += (9 * .3)
+                p2BlockHit += 2
+            } else p2damage += 9
+
             playerone.kickAlreadyHit = true
-            p2damage += 9
             const health = healthCalc()
             console.log(health)
 
@@ -581,8 +593,12 @@ function animateFrames() {
         && playerone.kickAttackHitBox.position.y <= playertwo.position.y + playertwo.height
         && playerone.kickActive && timer > 0 && p1HealthPercent > 0
         && !playerone.kickAlreadyHit) { // LEFT FACING
+            if (playertwo.blockActive === true) {
+                p2damage += (9 * .3)
+                p2BlockHit += 2
+            } else p2damage += 9
+
             playerone.kickAlreadyHit = true
-            p2damage += 9
             const health = healthCalc()
             console.log(health)
 
@@ -595,10 +611,13 @@ function animateFrames() {
         && playerone.projectileActive && p1HealthPercent > 0) { // LEFT FACING
             playerone.projectileActive = false
             if (timer > 0) {
-                p2damage += 14
+                if (playertwo.blockActive === true) {
+                    p2damage += (14 * .3)
+                    p2BlockHit += 3
+                } else p2damage += 14
+
                 const health = healthCalc()
                 console.log(health)
-
             }
         }
     if (playerone.projAttackHitbox.position.x + playerone.projAttackHitbox.width >= playertwo.position.x 
@@ -608,7 +627,11 @@ function animateFrames() {
         && playerone.projectileActive && p1HealthPercent > 0) { // RIGHT FACING
             playerone.projectileActive = false
             if (timer > 0) {
-                p2damage += 14
+                if (playertwo.blockActive === true) {
+                    p2damage += (14 * .3)
+                    p2BlockHit += 3
+                } else p2damage += 14
+
                 const health = healthCalc()
                 console.log(health)
 
@@ -625,9 +648,9 @@ function animateFrames() {
         && !playertwo.punchAlreadyHit) { // LEFT FACING
 
             if (playerone.blockActive === true) { 
-                p1damage += (6.25 * .3)
+                p1damage += (6 * .3)
                 p1BlockHit += 1
-            } else p1damage += 6.25
+            } else p1damage += 6
 
             playertwo.punchAlreadyHit = true
             const health = healthCalc()
@@ -643,9 +666,9 @@ function animateFrames() {
         && playertwo.punchActive && timer > 0 && p2HealthPercent > 0
         && !playertwo.punchAlreadyHit) { // RIGHT FACING
             if (playerone.blockActive === true) {
-                p1damage += (6.25 * .3)
+                p1damage += (6 * .3)
                 p1BlockHit += 1
-            } else p1damage += 6.25
+            } else p1damage += 6
 
             playertwo.punchAlreadyHit = true 
             const health = healthCalc()
@@ -967,7 +990,7 @@ window.addEventListener('keyup', function(p){
         playertwo.velocity.vxr = 0
         slideBoostCompletedTwo = false
     }
-    else if (p.code === 'ArrowLeft') {
+    else if (p.code === 'ArrowLeft') { 
         playertwo.blockActive = false
         playertwo.velocity.vxl = 0
         slideBoostCompletedTwo = false

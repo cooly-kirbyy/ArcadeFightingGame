@@ -2,6 +2,8 @@
 -           blocking with minimal damage with a guard meter
                 (add replenishing over time)
                 (may remove the hitbox but keep it for now)
+
+                (Switch the way the p2 block meter goes down)
 - block breaking
 - stunning || knockback when being attacked 
 - grabbing => throwing 
