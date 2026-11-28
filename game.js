@@ -249,11 +249,6 @@ class spriteONE {
             this.projectilePlayerHold = false
         }, 300)
     }
-
-    block() {
-
-        this.blockActive = true
-    }
 }
 
 
@@ -279,6 +274,8 @@ class spriteTWO {
         this.projectileActive = false
         this.projectilePlayerHold = false
 
+        this.blockActive = false
+
         this.punchAttackHitBox = {
             position: this.position,
             widthl: -80,
@@ -297,6 +294,12 @@ class spriteTWO {
             position: {x: this.position.x, y:this.position.y},
             width: 60,
             height: 60,
+        }
+
+        this.blockingHitBox = {
+            position: this.position,
+            width: 75,
+            height: 70,
         }
     }
 
@@ -333,6 +336,12 @@ class spriteTWO {
             ctext.fillStyle = 'purple'
             ctext.fillRect(this.projAttackHitbox.position.x, this.projAttackHitbox.position.y, this.projAttackHitbox.width, this.projAttackHitbox.height)
         } 
+
+        // blocking hitbox
+        if (this.blockActive === true) {
+            ctext.fillStyle = 'darkgray'
+            ctext.fillRect(this.blockingHitBox.position.x, this.blockingHitBox.position.y, this.blockingHitBox.width, this.blockingHitBox.height)
+        }
     }
 
     startProjectile() {
@@ -897,9 +906,15 @@ window.addEventListener('keydown', function(p){
         }
         // SINGLE KEY CONTROLS
         else if (p.code === 'ArrowRight' && !playertwo.projectilePlayerHold) {
+            if (playertwo.position.x > playerone.position.x) {
+                playertwo.blockActive = true
+            }
             playertwo.velocity.vxr = 5
         }
         else if (p.code === 'ArrowLeft' && !playertwo.projectilePlayerHold) {
+            if (playertwo.position.x < playerone.position.x) {
+                playertwo.blockActive = true
+            }
             playertwo.velocity.vxl = -5
         }
         else if (p.code === 'ArrowUp') {
@@ -948,10 +963,12 @@ window.addEventListener('keyup', function(p){
 
     /*second player controls */
     else if (p.code === 'ArrowRight') {
+        playertwo.blockActive = false
         playertwo.velocity.vxr = 0
         slideBoostCompletedTwo = false
     }
     else if (p.code === 'ArrowLeft') {
+        playertwo.blockActive = false
         playertwo.velocity.vxl = 0
         slideBoostCompletedTwo = false
     }
